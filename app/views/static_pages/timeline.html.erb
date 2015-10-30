@@ -1,0 +1,250 @@
+<!-- Timeline Start -->
+<section id="user-info" class="row">
+  <article class="col-md-5">
+
+    <!-- About Box -->
+    <div class="row about-box">
+      <div class="heading">
+        <h3>About</h3>
+      </div>
+      <div id="basic-info">
+        <strong>Birthday:</strong><p>July 31st, 1980</p>
+        <strong>School:</strong><p>Hogwarts College</p>
+        <strong>Hometown:</strong><p>Godrick's Hollow, England</p>
+        <strong>Currently Lives:</strong><p>Godrick's Hollow</p>
+      </div>
+    </div>
+
+    <!-- Photo Box -->
+    <div class="row photo-box">
+      <div class="heading">
+        <h3>Photos (123)</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag "thumbnail.png" %>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "thumbnail.png" %>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "thumbnail.png" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag "thumbnail.png" %>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "thumbnail.png" %>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "thumbnail.png" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag "thumbnail.png" %>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "thumbnail.png" %>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "thumbnail.png" %>
+        </div>
+      </div>
+      <a href="#">See More Photos</a>
+    </div>
+
+    <!-- Friend Box -->
+    <div class="row friend-timeline">
+      <div class="heading">
+        <h3>Friends (542)</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag "friend-thumbnail.jpg" %>
+          <a href="#">Ron Weasley</a>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "friend-thumbnail.jpg" %>
+          <a href="#">Ginny Weasley</a>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "friend-thumbnail.jpg" %>
+          <a href="#">Hermione Granger</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag "friend-thumbnail.jpg" %>
+          <a href="#">Paragraph Text</a>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "friend-thumbnail.jpg" %>
+          <a href="#">Paragraph Text</a>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag "friend-thumbnail.jpg" %>
+          <a href="#">Paragraph Text</a>
+        </div>
+      </div>
+      <a href="#">See More Friends</a>
+    </div>
+
+  </article>
+
+  <!-- Post Section -->
+  <article class="col-md-6">
+    
+    <!-- Create Post -->
+    <div class="post create-post">
+      <div class="row create-post-header">
+        <h2>Post</h2>
+      </div>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <textarea placeholder="Tell the world something..."></textarea>
+        </div>
+      </div>
+      <div class="row post-footer">
+        <button class="btn btn-primary post-button">Post</button>
+      </div>
+    </div>
+
+    <!-- Old Post -->
+    <div class="post">
+      <div class="row post-header">
+        <div class="col-xs-12">
+          <a href="#">
+            <%= image_tag "profile.jpg" %>
+          </a>
+          <div class="name">
+            <a href="#">Harry Potter</a>
+            <p>Posted on Thursday 6/1/2014</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+      <div class="row post-footer">
+        <a class="post-link" href="#">Like</a>
+        <a class="post-link" href="#">Comment</a>
+        <a class="post-link" href="#">Delete</a>
+      </div>
+    </div>
+
+    <!-- Liked Post -->
+    <div class="post">
+      <div class="row post-header">
+        <div class="col-xs-12">
+          <a href="#">
+            <%= image_tag "profile.jpg" %>
+          </a>
+          <div class="name">
+            <a href="#">Harry Potter</a>
+            <p>Posted on Thursday 5/21/2014</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+
+      <div class="row post-footer">
+        <a class="post-link" href="#">Like</a>
+        <a class="post-link" href="#">Comment</a>
+        <a class="post-link" href="#">Delete</a>
+        <p><a href="#">Hermione Granger</a> likes this.</p>
+      </div>
+    </div>
+
+    <!-- Comments on Post -->
+    <div class="post">
+      <div class="row post-header">
+        <div class="col-xs-12">
+          <a href="#">
+            <%= image_tag "profile.jpg" %>
+          </a>
+          <div class="name">
+            <a href="#">Harry Potter</a>
+            <p>Posted on Thursday 5/21/2014</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+
+      <div class="row post-footer">
+        <a class="post-link" href="#">Unlike</a>
+        <a class="post-link" href="#">Delete</a>
+        <p><a href="#">Hermione Granger</a> and 3 others liked this.</p>
+      </div>
+
+      <div class="row comments">
+        <div class="comment col-xs-12">
+          <a href="#">
+            <%= image_tag "friend-thumbnail.jpg" %>
+          </a>
+          <p><a href="#">Ron Weasley</a> said on Thursday 5/21/2014</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.</p>
+          <p><a href="#">Like</a> 5 other people liked this.</p>
+        </div>
+      </div>
+
+      <div class="row comments">
+        <div class="comment col-xs-12">
+          <a href="#">
+            <%= image_tag "profile.jpg" %>
+          </a>
+          <p><a href="#">Harry Potter</a> said on Thursday 5/21/2014</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.</p>
+          <p><a href="#">Like</a> 3 other people liked this. <a class="delete-post" href="#">Delete</a></p>
+        </div>
+      </div>
+
+      <div class="row comments">
+        <div class="comment-area col-xs-12">
+          <form>
+            <textarea placeholder="Write a comment..."></textarea>
+            <a href="#">Cancel</a>
+            <button class="btn btn-primary right">Comment</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </article>
+</section>

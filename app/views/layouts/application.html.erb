@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Danebook</title>
+  
+  <!-- Boostrap -->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Google Jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <!-- Boostrap Javascript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!-- Personal Styles -->
+  <% unless current_page?('/') %>
+  <%= stylesheet_link_tag "styles" %>
+  <% end %>
+
+</head>
+<body>
+
+<% unless current_page?('/') %>
+
+<%= render "navbar" %>
+
+<main class="container">
+  <%= render "profile_nav" %>
+  <%= yield %>
+</main>
+
+<% end %>
+
+<% if current_page?('/') %>
+<%= yield%>
+<% end %>
+
+</body>
+</html>

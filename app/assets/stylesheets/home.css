@@ -1,0 +1,75 @@
+#home {
+  background-color: #3A5795;
+  color: white; }
+  nav .navbar-brand {
+    font-size: 36px; }
+  nav .navbar-header {
+    margin-top: 20px; }
+  nav label {
+    display: block; }
+  nav .form-control {
+    border-radius: 0;
+    border: 1px solid black; }
+  nav button {
+    margin-top: 24px;
+    margin-left: 5px; }
+  nav .form-control,
+  nav .btn {
+    margin-bottom: 10px; }
+  nav .btn-info {
+    background-color: #5972A7;
+    border-radius: 0;
+    color: black;
+    box-shadow: 1px 1px 5px black;
+    border: 1px solid black; }
+  nav #form-id {
+    word-spacing: 145px;
+    padding-bottom: 5px; }
+
+.navbar {
+  min-height: 75px;
+  border-radius: 0;
+  border-bottom: 2px solid black; }
+
+.container {
+  width: 1250px; }
+
+#connect {
+  margin-top: 130px; }
+  #connect h1 {
+    margin-bottom: 25px;
+    font-weight: bold; }
+  #connect li {
+    font-size: 16px;
+    margin-bottom: 10px; }
+  #connect h4 {
+    display: inline-block;
+    font-weight: bold;
+    color: gray; }
+
+#signup {
+  margin-left: 145px;
+  margin-top: 50px; }
+  #signup .form-inline {
+    width: 100%; }
+    #signup .form-inline select {
+      margin-right: 10px;
+      margin-bottom: 15px; }
+    #signup .form-inline .form-group {
+      width: 49.5%;
+      margin-bottom: 15px; }
+      #signup .form-inline .form-group .form-control {
+        width: 100%; }
+  #signup h1 {
+    margin-bottom: 45px;
+    font-weight: bold; }
+  #signup h3 {
+    margin-top: 45px;
+    margin-bottom: 20px; }
+  #signup button {
+    margin-top: 15px; }
+  #signup input,
+  #signup button {
+    border: 1px solid black; }
+
+/*# sourceMappingURL=styles.css.map */
