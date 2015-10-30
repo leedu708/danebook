@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   delete 'logout' => 'sessions#destroy'
 
+  resources :users do
+    resource :profile
+  end
+
   get "/timeline" => "static_pages#timeline"
   get "/about" => "static_pages#about"
   get "/photos" => "static_pages#photos"
