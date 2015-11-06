@@ -1,19 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-
 User.delete_all
 Profile.delete_all
 Post.delete_all
 Comment.delete_all
 Like.delete_all
 
-
+puts "Old records destroyed."
 
 # Create 50 Users with Profiles
 50.times do
@@ -34,6 +25,7 @@ Like.delete_all
   u.save!
 end
 
+puts "Users and profiles created."
 
 User.all.each do |u|
   # Create 2-6 Posts for each User
@@ -53,6 +45,7 @@ User.all.each do |u|
   end
 end
 
+puts "User posts and comments created."
 
 # For each Post & each Comment, pick 0-7 random Users to Like it
 def assign_likes(object)
@@ -62,7 +55,6 @@ def assign_likes(object)
   end
 end
 
-
 Post.all.each do |p|
   assign_likes(p)
 end
@@ -70,3 +62,7 @@ end
 Comment.all.each do |c|
   assign_likes(c)
 end
+
+puts "User likes added."
+
+puts "COMPLETE!"

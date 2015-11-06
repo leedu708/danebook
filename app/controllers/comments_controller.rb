@@ -12,21 +12,21 @@ class CommentsController < ApplicationController
       flash[:danger] = "Comment failed to save - please try again."
     end
 
-    redirect_to users_posts_path(@new_comment.post.author)
+    redirect_to user_posts_path(@new_comment.post.author)
 
   end
 
   def destroy
 
     comment = Comment.find(params[:id])
-    post_athor = comment.post.author
+    post_author = comment.post.author
     if comment.destroy!
       flash[:success] = 'Comment successfully deleted!'
     else
       flash[:danger] = 'Comment failed to be deleted - please try again.'
     end
 
-    redirect_to users_posts_path(post_author)
+    redirect_to user_posts_path(post_author)
 
   end
 
