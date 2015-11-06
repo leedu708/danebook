@@ -6,7 +6,7 @@
       <div class="row spacer"></div>
 
       <div class="row user-name">
-        <h1><%= current_user.profile.full_name %></h1>
+        <h1><%= user.profile.full_name %></h1>
       </div>
 
     </div>
@@ -25,16 +25,16 @@
         <ul class="nav nav-tabs">
 
           <li class="text-bottom" role="presentation">
-            <%= image_tag("profile.jpg", width:'140', height:'140', id:'user-photo', class:'media-object') %>
+            <%= image_tag 'profile.jpg', id: 'user-photo', class: 'media-object', size: '140x140', alt: "User's personal photo" %>
           </li>
 
-          <%= render :partial => "shared/nav_tab", :locals => { :page => "Timeline", :user => user, :badge => nil } %>
+          <%= render :partial => "shared/nav_tab", :locals => { :label => "Timeline", :link => user_posts_path(user.id), :user => user, :badge => nil } %>
 
-          <%= render :partial => "shared/nav_tab", :locals => { :page => "About", :user => user, :badge => nil  } %>
+          <%= render :partial => "shared/nav_tab", :locals => { :label => "About", :link => user_path(user.id), :user => user, :badge => nil  } %>
 
-          <%= render :partial => "shared/nav_tab", :locals => { :page => "Photos", :user => user, :badge => "123" } %>
+          <%= render :partial => "shared/nav_tab", :locals => { :label => "Photos", :link => '#', :user => user, :badge => "123" } %>
 
-          <%= render :partial => "shared/nav_tab", :locals => { :page => "Friends", :user => user, :badge => "542" } %>
+          <%= render :partial => "shared/nav_tab", :locals => { :label => "Friends", :link => '#', :user => user, :badge => "542" } %>
 
 
           <% unless current_page?("/about_edit") %>
@@ -48,7 +48,6 @@
       </div>
 
     </div>
-
 
   </div> <!-- page links row -->
 

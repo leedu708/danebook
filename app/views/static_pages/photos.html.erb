@@ -1,116 +1,61 @@
-<section id="user-info" class="row">
-  <div class="row heading">
-    <p>Photos</p>
-    <a href="#"><button class="btn btn-primary btn-xs">Add Photo!</button></a>
-  </div>
+<main class="container content-container">
 
-  <div class="photo-grid">
-    <section class="row">
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-    </section>
+  <%= render :partial => "shared/header", :locals => { :toggled => "about" } %>
 
-    <section class="row">
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-    </section>
 
-    <section class="row">
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-    </section>
 
-    <section class="row">
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
+
+<!-- Start of main Friends section -->
+  <section id="photos" class="row">
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="panel panel-default">
+
+
+          <div class="panel-heading">
+            <div class="row">
+
+              <div class="col-xs-4 col-xs-offset-4 text-center">
+                <h1 class="panel-title">Photos</h1>
+              </div>
+
+              <div class="col-xs-4 text-right">
+                <a href="#" class="btn btn-primary btn-sm pull-right" alt="Add a photo.">
+                  Add Photo!
+                </a>
+              </div>
+
+            </div>
+
+          </div> <!-- end of panel heading -->
+
+
+
+
+          <div class="panel-body">
+            <div class="row center-block">
+
+    <!-- photo column -->
+              <div class="col-md-12 text-center">
+
+                <% 16.times do %>
+                  <%= render "static_pages/photos/photo" %>
+                <% end %>
+
+              </div> <!-- photo column -->
+
+            </div>
+          </div> <!-- end of larger panel body -->
+
         </div>
-        <%= image_tag "photos.jpg" %>
+
       </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-      <div class="col-md-3 photo">
-        <div class="photo-info">
-          Uploaded January 1, 2015
-        </div>
-        <%= image_tag "photos.jpg" %>
-      </div>
-    </section>
-  </div>
-</section>
+    </div>
+  </section>
+
+
+
+
+</main> <!-- container -->

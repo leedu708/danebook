@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     resources :posts, :only => [:create, :index, :destroy]
   end
 
+  resources :comments, :only => [:create, :destroy]
   resources :likes, :only => [:create, :destroy]
-  resources :comments, :only => [:create]
 
   get "/about" => "users#show"
   get "/about_edit" => "users#edit"

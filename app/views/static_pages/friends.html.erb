@@ -1,75 +1,50 @@
-<section id="user-info" class="row">
-  <div class="row heading">
-    <p>Friends</p>
-  </div>
+<main class="container content-container">
 
-  <section class="row">
-    <div class="col-md-5 col-md-offset-1">
-      <div class="friend-box">
-        <%= image_tag "friend.png" %>
-        <div class="friend-text">
-          <a href="#">Hermione Granger</a>
-          <h3>432 Friends</h3>
+  <%= render :partial => "shared/header", :locals => { :toggled => "about" } %>
+
+
+
+
+<!-- Start of main Friends section -->
+  <section id="friends" class="row">
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="panel panel-default">
+
+
+          <div class="panel-heading">
+            <div class="row">
+
+              <div class="col-xs-12 text-center">
+                <h1 class="panel-title">Friends</h1>
+              </div>
+
+            </div>
+
+          </div> <!-- end of panel heading -->
+
+
+
+
+          <div class="panel-body">
+            <div class="row">
+
+              <% 6.times do %>
+                <%= render "static_pages/friends/friend_listing" %>
+              <% end %>
+
+            </div>
+          </div> <!-- end of larger panel body -->
+
         </div>
-        <button type="button" class="btn btn-primary">Unfriend Me</button>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="friend-box">
-        <%= image_tag "friend.png" %>
-        <div class="friend-text">
-          <a href="#">Hermione Granger</a>
-          <h3>432 Friends</h3>
-        </div>
-        <button type="button" class="btn btn-primary">Unfriend Me</button>
+
       </div>
     </div>
   </section>
 
-  <section class="row">
-    <div class="col-md-5 col-md-offset-1">
-      <div class="friend-box">
-        <%= image_tag "friend.png" %>
-        <div class="friend-text">
-          <a href="#">Hermione Granger</a>
-          <h3>432 Friends</h3>
-        </div>
-        <button type="button" class="btn btn-primary">Unfriend Me</button>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="friend-box">
-        <%= image_tag "friend.png" %>
-        <div class="friend-text">
-          <a href="#">Hermione Granger</a>
-          <h3>432 Friends</h3>
-        </div>
-        <button type="button" class="btn btn-primary">Unfriend Me</button>
-      </div>
-    </div>
-  </section>
 
-  <section class="row">
-    <div class="col-md-5 col-md-offset-1">
-      <div class="friend-box">
-        <%= image_tag "friend.png" %>
-        <div class="friend-text">
-          <a href="#">Hermione Granger</a>
-          <h3>432 Friends</h3>
-        </div>
-        <button type="button" class="btn btn-primary">Unfriend Me</button>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="friend-box">
-        <%= image_tag "friend.png" %>
-        <div class="friend-text">
-          <a href="#">Hermione Granger</a>
-          <h3>432 Friends</h3>
-        </div>
-        <button type="button" class="btn btn-primary">Unfriend Me</button>
-      </div>
-    </div>
-  </section>
 
-</section>
+
+</main> <!-- container -->
