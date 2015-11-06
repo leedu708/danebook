@@ -1,0 +1,55 @@
+<header>
+  <div class="row cover-photo-row">
+
+    <div class="col-xs-12 cover-box">
+
+      <div class="row spacer"></div>
+
+      <div class="row user-name">
+        <h1><%= current_user.profile.full_name %></h1>
+      </div>
+
+    </div>
+
+  </div>  <!-- cover photo row -->
+
+<!-- row for user photo and page links -->
+  <div class="row page-links-row">
+
+
+    <!-- main links column -->
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <ul class="nav nav-tabs">
+
+          <li class="text-bottom" role="presentation">
+            <%= image_tag("profile.jpg", width:'140', height:'140', id:'user-photo', class:'media-object') %>
+          </li>
+
+          <%= render :partial => "shared/nav_tab", :locals => { :page => "Timeline", :user => user, :badge => nil } %>
+
+          <%= render :partial => "shared/nav_tab", :locals => { :page => "About", :user => user, :badge => nil  } %>
+
+          <%= render :partial => "shared/nav_tab", :locals => { :page => "Photos", :user => user, :badge => "123" } %>
+
+          <%= render :partial => "shared/nav_tab", :locals => { :page => "Friends", :user => user, :badge => "542" } %>
+
+
+          <% unless current_page?("/about_edit") %>
+            <li class="text-center pull-right" role="presentation">
+              <%= link_to "Edit Profile", edit_user_path(current_user), alt: "Edit your user profile" if user == current_user %>
+            </li>
+          <% end %>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+
+  </div> <!-- page links row -->
+
+</header>

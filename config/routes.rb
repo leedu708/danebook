@@ -6,14 +6,18 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   delete 'logout' => 'sessions#destroy'
 
-  resources :users do
-    resource :profile
+  resources :users, :only => [:new, :create, :show, :edit, :update] do
+    resource :profile, :only => [:new]
+    resources :posts, :only => [:create, :index, :destroy]
   end
 
-  get "/timeline" => "static_pages#timeline"
-  get "/about" => "static_pages#about"
+  resources :likes, :only => [:create, :destroy]
+  resources :comments, :only => [:create]
+
+  get "/about" => "users#show"
+  get "/about_edit" => "users#edit"
+  get "/timeline" => "posts#index"
   get "/photos" => "static_pages#photos"
   get "/friends" => "static_pages#friends"
-  get "/about_edit" => "static_pages#about_edit"
 
 end

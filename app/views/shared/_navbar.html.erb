@@ -42,7 +42,7 @@
         <!-- user navigation -->
         <div class="nav navbar-text navbar-right">
 
-          <%= link_to current_user.email, about_path, class: "brand-text" %>
+          <%= link_to current_user.email, user_path(current_user), class: "brand-text" %>
           <%= link_to "Log Out", logout_path, :method => :delete, class: 'brand-text' %>
 
         </div>
@@ -80,7 +80,7 @@
             </div>
 
             <div class="col-xs-2">
-              <%= submit_tag 'Log In', class: 'btn btn-default input-sm custom-button' %>
+              <%= submit_tag 'Log In', class: 'btn btn-success input-sm custom-button' %>
             </div>
 
           </div>

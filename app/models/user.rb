@@ -5,9 +5,22 @@ class User < ActiveRecord::Base
   has_one :profile, :dependent => :destroy
   accepts_nested_attributes_for :profile
 
-  validates :password,
-            :length => { :in => 5..24 },
-            :allow_nil => false
+  has_many :posts, :foreign_key => :author_id, :dependent => :destroy
+
+  has_many :likes, :foreign_key => :liker_id,
+                   :dependent => :destroy
+  has_many :liked_posts, :through => :likes,
+                         :source => :post
+
+  has_many :comments, :foreign_key => :author_id
+
+  validates :email, :uniqueness => true, :format => { :with => /.+@.+/, :message => "enter a valid email." }
+  # validates :password,
+  #           :length => { :in => 5..24 },
+  #           :allow_nil => false
+  validates_confirmation_of :password
+
+  before_create :generate_token
 
   def generate_token
 
