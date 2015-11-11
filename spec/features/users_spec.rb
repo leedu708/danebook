@@ -2,8 +2,7 @@ require 'rails_helper'
 
 feature 'Create New User' do
 
-  let(:new_user) { build(:user) }
-  let(:profile) { build(:base_profile, user: new_user) }
+  let(:new_user) { build(:user, :profile => build(:base_profile)) }
 
   before do
     visit root_path
@@ -12,7 +11,7 @@ feature 'Create New User' do
   scenario 'with valid attributes' do
 
     # LoginMacros
-    fill_out_new_user_form(new_user, profile)
+    fill_out_new_user_form(new_user)
     click_button 'Sign Up!'
 
     expect(page).to have_content 'User successfully created!'
@@ -23,8 +22,8 @@ feature 'Create New User' do
 
   scenario 'with invalid attributes' do
 
-    profile.first_name = nil
-    fill_out_new_user_form(new_user, profile)
+    new_user.profile.first_name = nil
+    fill_out_new_user_form(new_user)
     click_button 'Sign Up!'
 
     expect(page).to have_content 'User failed to be created.'
@@ -37,7 +36,7 @@ feature 'Create New User' do
 
     existing_user = create(:user)
     new_user.email = existing_user.email
-    fill_out_new_user_form(new_user, profile)
+    fill_out_new_user_form(new_user)
     click_button 'Sign Up!'
 
     expect(page).to have_content 'User failed to be created.'

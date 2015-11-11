@@ -4,6 +4,7 @@ FactoryGirl.define do
 
     sequence(:email) { |n| "foo#{n}@test.com" }
     password "password"
+    association :profile, factory: :full_profile
 
   end
 
