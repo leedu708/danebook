@@ -1,11 +1,17 @@
 FactoryGirl.define do
 
-  factory :profile do
+  factory :base_profile, :class => :profile do
 
     first_name "Foo"
     sequence(:last_name) { |n| "Test#{n}" }
     gender "Male"
     birthdate 20.years.ago
+    user
+
+  end
+
+  factory :full_profile, :class => :profile do
+    
     college "Test University"
     hometown "Fooville"
     currently_lives "Testing City"

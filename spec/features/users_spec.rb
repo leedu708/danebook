@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Create New User' do
 
   let(:new_user) { build(:user) }
-  let(:profile) { build(:profile, user: new_user) }
+  let(:profile) { build(:base_profile, user: new_user) }
 
   before do
     visit root_path
