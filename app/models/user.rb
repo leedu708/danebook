@@ -12,12 +12,13 @@ class User < ActiveRecord::Base
   # has_many :liked_posts, :through => :likes,
                          # :source => :post
 
-  has_many :comments, :foreign_key => :author_id
+  has_many :comments, :foreign_key => :author_id,
+                      :dependent => :destroy
 
   validates :email, :uniqueness => true, :format => { :with => /.+@.+/, :message => "enter a valid email." }
-  # validates :password,
-  #           :length => { :in => 5..24 },
-  #           :allow_nil => false
+  validates :password,
+            :length => { :in => 5..24 },
+            :allow_nil => true
   validates_confirmation_of :password
 
   before_create :generate_token

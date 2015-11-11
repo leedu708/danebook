@@ -52,6 +52,12 @@ group :development, :test do
   gem 'faker'
 
   gem 'better_errors'
+
+  gem 'rspec-rails'
+
+  gem 'factory_girl_rails', '~> 4.0'
+
+  gem 'guard-rspec', require: false
 end
 
 gem 'binding_of_caller'

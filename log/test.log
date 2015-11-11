@@ -1,0 +1,322 @@
+  [1m[36m (391.4ms)[0m  [1mDROP DATABASE IF EXISTS "db/test"[0m
+  [1m[35m (1399.2ms)[0m  CREATE DATABASE "db/test" ENCODING = 'unicode'
+  [1m[36mSQL (0.1ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (127.7ms)[0m  CREATE TABLE "comments" ("id" serial primary key, "body" text NOT NULL, "author_id" integer NOT NULL, "post_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (99.7ms)[0m  [1mCREATE TABLE "likes" ("id" serial primary key, "liker_id" integer NOT NULL, "liked_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "liked_type" character varying NOT NULL) [0m
+  [1m[35m (57.3ms)[0m  CREATE  INDEX  "index_likes_on_liked_id_and_liked_type" ON "likes" USING btree ("liked_id", "liked_type")
+  [1m[36m (99.9ms)[0m  [1mCREATE TABLE "posts" ("id" serial primary key, "body" text NOT NULL, "author_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (99.8ms)[0m  CREATE TABLE "profiles" ("id" serial primary key, "first_name" character varying NOT NULL, "last_name" character varying NOT NULL, "birthdate" date NOT NULL, "gender" character varying, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "college" character varying, "hometown" character varying, "currently_lives" character varying, "telephone" character varying, "words_to_live_by" text, "description" text) 
+  [1m[36m (91.5ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying NOT NULL, "password_digest" character varying NOT NULL, "auth_token" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (57.5ms)[0m  CREATE UNIQUE INDEX  "index_users_on_auth_token" ON "users" USING btree ("auth_token")
+  [1m[36m (57.6ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (39.6ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (40.6ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151106154703')[0m
+  [1m[35m (8.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151030063231')
+  [1m[36m (8.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151106144933')[0m
+  [1m[35m (8.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151106152648')
+  [1m[36m (8.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151030063126')[0m
+  [1m[35m (8.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151030020020')
+  [1m[36m (8.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151106154537')[0m
+  [1m[35m (8.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151106135046')
+  [1m[36m (8.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151030014055')[0m
+  [1m[35m (8.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151030063143')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "4bPyLLgJZNk9Ygq2vC4P-Q"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo1@test.com"], ["password_digest", "$2a$04$8cCGu53WrH/1IJcZqSD0s.B/3wdkvvRxilkBHcrWV0WHnKD5tF3JC"], ["created_at", "2015-11-11 17:32:33.780253"], ["updated_at", "2015-11-11 17:32:33.780253"], ["auth_token", "4bPyLLgJZNk9Ygq2vC4P-Q"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "-6w_UcmrRceEEeJsppFHyQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo2@test.com"], ["password_digest", "$2a$04$iHkjkac8aF6lQP4q8UaPvuB7x4qU2sYxQoDW2UowwdIuK2K3MPan6"], ["created_at", "2015-11-11 17:32:33.818087"], ["updated_at", "2015-11-11 17:32:33.818087"], ["auth_token", "-6w_UcmrRceEEeJsppFHyQ"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 1"], ["author_id", 2], ["created_at", "2015-11-11 17:32:33.820076"], ["updated_at", "2015-11-11 17:32:33.820076"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "W5qEOL04RQ-Zyq7yvyrWyQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo1@test.com"], ["password_digest", "$2a$04$T4sMsPZ8FXDFusIHMYmWaOICu0bY02njNE66xvJkQ8Wkzmmm.oX4S"], ["created_at", "2015-11-11 17:35:02.189589"], ["updated_at", "2015-11-11 17:35:02.189589"], ["auth_token", "W5qEOL04RQ-Zyq7yvyrWyQ"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "dJD_c8QsN15tuMQH8Zh3cA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo2@test.com"], ["password_digest", "$2a$04$.KoFBwBrhKL4Ll3OJVye5.ikle.cf8Fbc4L8K.GdC5pUFpW5Bv4Ua"], ["created_at", "2015-11-11 17:35:02.201046"], ["updated_at", "2015-11-11 17:35:02.201046"], ["auth_token", "dJD_c8QsN15tuMQH8Zh3cA"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 1"], ["author_id", 4], ["created_at", "2015-11-11 17:35:02.203365"], ["updated_at", "2015-11-11 17:35:02.203365"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo3@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "hW9OyupNfsnf5SyR1FVLoQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo3@test.com"], ["password_digest", "$2a$04$ho7x6.P./odRanSVarsciOInhZ1HoRNkag1s.3pZ7Sae0IHE3nnS6"], ["created_at", "2015-11-11 17:35:02.207533"], ["updated_at", "2015-11-11 17:35:02.207533"], ["auth_token", "hW9OyupNfsnf5SyR1FVLoQ"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo4@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "kcWfKKvzjlhloT2xhJXqyA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo4@test.com"], ["password_digest", "$2a$04$DZsavU1s6cDc7V6TNekhJ.x0SBwr5mzPPkIZW.v1/G56oAOJIaeSa"], ["created_at", "2015-11-11 17:35:02.210526"], ["updated_at", "2015-11-11 17:35:02.210526"], ["auth_token", "kcWfKKvzjlhloT2xhJXqyA"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 2"], ["author_id", 6], ["created_at", "2015-11-11 17:35:02.211888"], ["updated_at", "2015-11-11 17:35:02.211888"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo5@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "L_n-Rwv8Ler-fjZNtZCLaA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo5@test.com"], ["password_digest", "$2a$04$mfFXyrKk0znbFaTIPQvDrenWpfYcxQe03c.3o6coW2EKl.8ot5Ec2"], ["created_at", "2015-11-11 17:35:02.214774"], ["updated_at", "2015-11-11 17:35:02.214774"], ["auth_token", "L_n-Rwv8Ler-fjZNtZCLaA"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo6@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "FsH3YyRMQwvYx53I7As54A"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo6@test.com"], ["password_digest", "$2a$04$h0qf8XoCnOG2hYBd1tSGTeipxDDQVBPwF8IF6jt.MA5hvHJRkRCEy"], ["created_at", "2015-11-11 17:35:02.217214"], ["updated_at", "2015-11-11 17:35:02.217214"], ["auth_token", "FsH3YyRMQwvYx53I7As54A"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 3"], ["author_id", 8], ["created_at", "2015-11-11 17:35:02.218323"], ["updated_at", "2015-11-11 17:35:02.218323"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo7@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "eKZoV-gvUNrTMQ7PtXdMAA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo7@test.com"], ["password_digest", "$2a$04$TL8jsgCXgzlfKE/1DGh1t.4oyJj.0B11zE3Pb9WaZr5hL7DZ3qvD6"], ["created_at", "2015-11-11 17:35:02.522240"], ["updated_at", "2015-11-11 17:35:02.522240"], ["auth_token", "eKZoV-gvUNrTMQ7PtXdMAA"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo8@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "CXruCqPlbuqkV-Gly5JMKA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo8@test.com"], ["password_digest", "$2a$04$vLq2B4VCu181RUPHZm.8CuUwmxHzkw01n4tNAc42EEM7jzWPGBysK"], ["created_at", "2015-11-11 17:35:02.525199"], ["updated_at", "2015-11-11 17:35:02.525199"], ["auth_token", "CXruCqPlbuqkV-Gly5JMKA"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 4"], ["author_id", 10], ["created_at", "2015-11-11 17:35:02.526386"], ["updated_at", "2015-11-11 17:35:02.526386"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo9@test.com' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "FjD7q_2kdSOEn5j3MOiz1A"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo9@test.com"], ["password_digest", "$2a$04$Vyr/XAPicoKg/YKVT.bjsem4nVYe4ubp3VidAeYo40.TchwPUBsLS"], ["created_at", "2015-11-11 17:35:02.529069"], ["updated_at", "2015-11-11 17:35:02.529069"], ["auth_token", "FjD7q_2kdSOEn5j3MOiz1A"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo10@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "iifWAdVGPYXlgZhlYgtG0w"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo10@test.com"], ["password_digest", "$2a$04$YX.vZPP.V4olr/QtOfU2dOGH//bV5xcw7KW1LuSG9n5/SMcWR9V/2"], ["created_at", "2015-11-11 17:35:02.531830"], ["updated_at", "2015-11-11 17:35:02.531830"], ["auth_token", "iifWAdVGPYXlgZhlYgtG0w"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 5"], ["author_id", 12], ["created_at", "2015-11-11 17:35:02.533100"], ["updated_at", "2015-11-11 17:35:02.533100"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "ZdiIeRS5lpGat4vgELrvkw"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo1@test.com"], ["password_digest", "$2a$04$1HoTQSbqHcdzmbUaK6ckbO0D0faoOE/flZPrm3RbSCopqxqL1asLO"], ["created_at", "2015-11-11 17:36:10.641063"], ["updated_at", "2015-11-11 17:36:10.641063"], ["auth_token", "ZdiIeRS5lpGat4vgELrvkw"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "raj0C4VPsQK2vxnG6lthPQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo2@test.com"], ["password_digest", "$2a$04$JglXYSua8V0cWNGRCTa1.uBh9Xn8cr8QpzlCt.2C6CtPOVZm1Bm5y"], ["created_at", "2015-11-11 17:36:10.653524"], ["updated_at", "2015-11-11 17:36:10.653524"], ["auth_token", "raj0C4VPsQK2vxnG6lthPQ"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 1"], ["author_id", 14], ["created_at", "2015-11-11 17:36:10.655830"], ["updated_at", "2015-11-11 17:36:10.655830"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo3@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "dHYuyzHCZg_qmC-ZUDCcGA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo3@test.com"], ["password_digest", "$2a$04$rYZ0D1Ezz4FKX/EeUpkoxeWMAA6wSnIBwKGjI1Hx306yTyBTqEfuu"], ["created_at", "2015-11-11 17:36:10.659916"], ["updated_at", "2015-11-11 17:36:10.659916"], ["auth_token", "dHYuyzHCZg_qmC-ZUDCcGA"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo4@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "SaWxJat15sVzyleRcut44g"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo4@test.com"], ["password_digest", "$2a$04$S6C7PWnYWf9g9.rH8Gk3/evNRj8wu9AmzUeC5mV7YnDv3rKiaw3Zy"], ["created_at", "2015-11-11 17:36:10.662661"], ["updated_at", "2015-11-11 17:36:10.662661"], ["auth_token", "SaWxJat15sVzyleRcut44g"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 2"], ["author_id", 16], ["created_at", "2015-11-11 17:36:10.663938"], ["updated_at", "2015-11-11 17:36:10.663938"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo5@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "0DtEF28rVf_AuqlAAF-wtQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo5@test.com"], ["password_digest", "$2a$04$oYpjYDHbyiIjPlFIfZ3O2eSx.O9t/PVluZ1ki7ahSxFpWukybvfsK"], ["created_at", "2015-11-11 17:36:10.667043"], ["updated_at", "2015-11-11 17:36:10.667043"], ["auth_token", "0DtEF28rVf_AuqlAAF-wtQ"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo6@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "_SqbcaD9QRbs-sgBs0LluQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo6@test.com"], ["password_digest", "$2a$04$h8aZo81cPx8Q165jPvitb.wI4MkSf0pP0cheYBuMtAejHAQFJppNK"], ["created_at", "2015-11-11 17:36:10.669712"], ["updated_at", "2015-11-11 17:36:10.669712"], ["auth_token", "_SqbcaD9QRbs-sgBs0LluQ"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 3"], ["author_id", 18], ["created_at", "2015-11-11 17:36:10.670913"], ["updated_at", "2015-11-11 17:36:10.670913"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo7@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "YGB1qnIfj2pEXdj8G3LlNw"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo7@test.com"], ["password_digest", "$2a$04$XXXpP1lc5EJVaqQohPBzGe4jwpNOS30efl3RHkzsM5qM.zvp.5nc2"], ["created_at", "2015-11-11 17:36:10.818175"], ["updated_at", "2015-11-11 17:36:10.818175"], ["auth_token", "YGB1qnIfj2pEXdj8G3LlNw"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo8@test.com' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "6pZmVUrVmlb9DmIxOnjraw"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo8@test.com"], ["password_digest", "$2a$04$UemkOVuS3aIXLXvlljSNT.d4tpK6sFem2bUJN6eCsHL2lyMcQ69Fm"], ["created_at", "2015-11-11 17:36:10.821074"], ["updated_at", "2015-11-11 17:36:10.821074"], ["auth_token", "6pZmVUrVmlb9DmIxOnjraw"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 4"], ["author_id", 20], ["created_at", "2015-11-11 17:36:10.822378"], ["updated_at", "2015-11-11 17:36:10.822378"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo9@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "cZRQIDJiUIvo3dM1H8llBw"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo9@test.com"], ["password_digest", "$2a$04$DRDPu2fLhfidX9ypZ8OEWOa/JACcKcewcQNzAPbLXLVAKsBIkRdYq"], ["created_at", "2015-11-11 17:36:10.825388"], ["updated_at", "2015-11-11 17:36:10.825388"], ["auth_token", "cZRQIDJiUIvo3dM1H8llBw"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo10@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "segoIjAA4KrzfpTCANCYBg"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo10@test.com"], ["password_digest", "$2a$04$gquVuSsjDD8pZzh8LmH1x.1UG0my2vSpVqEpQfKhnPUnr4bElI1Ti"], ["created_at", "2015-11-11 17:36:10.828320"], ["updated_at", "2015-11-11 17:36:10.828320"], ["auth_token", "segoIjAA4KrzfpTCANCYBg"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 5"], ["author_id", 22], ["created_at", "2015-11-11 17:36:10.829733"], ["updated_at", "2015-11-11 17:36:10.829733"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo11@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "43knO8QeivXv77P7uJwH4Q"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo11@test.com"], ["password_digest", "$2a$04$nl0rC3jx64nxC7mbKFb/m.J2YnnjZnyWT9tZVT9sWFtRlhO5OiLzK"], ["created_at", "2015-11-11 17:36:10.849507"], ["updated_at", "2015-11-11 17:36:10.849507"], ["auth_token", "43knO8QeivXv77P7uJwH4Q"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo12@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "XkxL5WZ0e0tNEsEcL_9MvQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo12@test.com"], ["password_digest", "$2a$04$Rpl6ViB5YYGEzQOs0P1fhetHQqNNdFqfvSMOGFoEEpZU0ujhKfU4K"], ["created_at", "2015-11-11 17:36:10.852758"], ["updated_at", "2015-11-11 17:36:10.852758"], ["auth_token", "XkxL5WZ0e0tNEsEcL_9MvQ"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 6"], ["author_id", 24], ["created_at", "2015-11-11 17:36:10.854091"], ["updated_at", "2015-11-11 17:36:10.854091"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "comments" ("body", "author_id", "post_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["body", "Foo comment6."], ["author_id", 23], ["post_id", 12], ["created_at", "2015-11-11 17:36:10.854954"], ["updated_at", "2015-11-11 17:36:10.854954"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo13@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "5V39w9Y8c0C1CZez6KI8XA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo13@test.com"], ["password_digest", "$2a$04$Xkmy67S0v.u6tHq3G8/ry.LFNz2o70mB6riFYIrXZt5rZR2HB1SuW"], ["created_at", "2015-11-11 17:36:10.863764"], ["updated_at", "2015-11-11 17:36:10.863764"], ["auth_token", "5V39w9Y8c0C1CZez6KI8XA"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mLike Load (0.2ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."liked_id" = $1 AND "likes"."liked_type" = $2  [["liked_id", 1], ["liked_type", "Comment"]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "comments" WHERE "comments"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "c1k67ZPgBZGtTH-SLc7QzQ"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo1@test.com"], ["password_digest", "$2a$04$i38jAnFcbloNVV4ZTDT0MemsPjtXvsMPuzimu2skAXRQt8B3Or3by"], ["created_at", "2015-11-11 17:36:25.313212"], ["updated_at", "2015-11-11 17:36:25.313212"], ["auth_token", "c1k67ZPgBZGtTH-SLc7QzQ"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "bVrnS74eyjVZfIT70doyVA"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo2@test.com"], ["password_digest", "$2a$04$4tws/SzdJc.WaUY/VGg2hOivnjyaGy9UuLH11zr38Q4rlWF.H8msC"], ["created_at", "2015-11-11 17:36:25.325863"], ["updated_at", "2015-11-11 17:36:25.325863"], ["auth_token", "bVrnS74eyjVZfIT70doyVA"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 1"], ["author_id", 27], ["created_at", "2015-11-11 17:36:25.327916"], ["updated_at", "2015-11-11 17:36:25.327916"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo3@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "EdX-82E-Wh4F5kZgCwCSgg"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo3@test.com"], ["password_digest", "$2a$04$D3CORdHDdZKgUvgN4wEwDegj5BNinV0qQtIgUXNQ5Tyt8wERtzUfy"], ["created_at", "2015-11-11 17:36:25.331554"], ["updated_at", "2015-11-11 17:36:25.331554"], ["auth_token", "EdX-82E-Wh4F5kZgCwCSgg"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo4@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "V9PHFp4V_11O0ShdQ3-Xsw"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo4@test.com"], ["password_digest", "$2a$04$MdlIMOkbpAba3pc.JUVNQ.4M9e4Aw5DTAzqUkYkhoGirLTIw3y6.W"], ["created_at", "2015-11-11 17:36:25.334118"], ["updated_at", "2015-11-11 17:36:25.334118"], ["auth_token", "V9PHFp4V_11O0ShdQ3-Xsw"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 2"], ["author_id", 29], ["created_at", "2015-11-11 17:36:25.335296"], ["updated_at", "2015-11-11 17:36:25.335296"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo5@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "leO8DEuLgatpJRiJL_yHpQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo5@test.com"], ["password_digest", "$2a$04$JDwH644N4EMJrRMy8CWn1eTCom/DMiGPwIv5k4G4KGWwxgcb.o1Me"], ["created_at", "2015-11-11 17:36:25.337927"], ["updated_at", "2015-11-11 17:36:25.337927"], ["auth_token", "leO8DEuLgatpJRiJL_yHpQ"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo6@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "heVfWxt3yIs0Q-GaQy374A"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo6@test.com"], ["password_digest", "$2a$04$LDCgva1oA6AE/3aXX0yJPeGnS57yZ/wTIUjtBX1yR6c9fd979u78y"], ["created_at", "2015-11-11 17:36:25.340326"], ["updated_at", "2015-11-11 17:36:25.340326"], ["auth_token", "heVfWxt3yIs0Q-GaQy374A"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 3"], ["author_id", 31], ["created_at", "2015-11-11 17:36:25.341383"], ["updated_at", "2015-11-11 17:36:25.341383"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo7@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "21D3HRQWAT5hokWPd6HqxA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo7@test.com"], ["password_digest", "$2a$04$H3AbeN1Pp8TYVsO62Sva3OfzvOb.L356SCwoF2wWGx40cOafMLhHK"], ["created_at", "2015-11-11 17:36:25.503963"], ["updated_at", "2015-11-11 17:36:25.503963"], ["auth_token", "21D3HRQWAT5hokWPd6HqxA"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo8@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "UyaNSMtCujxUTezuhWyd-A"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo8@test.com"], ["password_digest", "$2a$04$z3D0OaABoOX.v0KovEk9ROuhTNmGl5AcOk8eBZw/0tMFHhpOUsPyG"], ["created_at", "2015-11-11 17:36:25.506757"], ["updated_at", "2015-11-11 17:36:25.506757"], ["auth_token", "UyaNSMtCujxUTezuhWyd-A"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 4"], ["author_id", 33], ["created_at", "2015-11-11 17:36:25.507953"], ["updated_at", "2015-11-11 17:36:25.507953"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo9@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "saUiOs4MO7YaJ5Dg5qW4Jg"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo9@test.com"], ["password_digest", "$2a$04$Yla.H3xB3xmrIeJ7/oaVDuIlOdX2sMO/ETTsYAiOoKMBLZcPzY3tm"], ["created_at", "2015-11-11 17:36:25.510862"], ["updated_at", "2015-11-11 17:36:25.510862"], ["auth_token", "saUiOs4MO7YaJ5Dg5qW4Jg"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo10@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "DkHPy-h2Z2ndmpX_I5KoEw"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo10@test.com"], ["password_digest", "$2a$04$hPWyYqjA.hHYyah50MG9neHgm7fRyYp2fgV4e.kFV0fg5Q571K82i"], ["created_at", "2015-11-11 17:36:25.513717"], ["updated_at", "2015-11-11 17:36:25.513717"], ["auth_token", "DkHPy-h2Z2ndmpX_I5KoEw"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 5"], ["author_id", 35], ["created_at", "2015-11-11 17:36:25.515390"], ["updated_at", "2015-11-11 17:36:25.515390"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo11@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "vxJ_3V5mSiWVYK9Gd4NKzA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo11@test.com"], ["password_digest", "$2a$04$hliqF3M9gxowiE4zuWb8FueCba28VXC7gJRgWBTiNGxm23nK3YslS"], ["created_at", "2015-11-11 17:36:25.537652"], ["updated_at", "2015-11-11 17:36:25.537652"], ["auth_token", "vxJ_3V5mSiWVYK9Gd4NKzA"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo12@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "sXuqKF1HWvmEG47EPmTj9A"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo12@test.com"], ["password_digest", "$2a$04$VGkNWIJir/h43BwxGZ0wIu.JS9h3YldpuXJXF2JFwv3tgkNOanVBq"], ["created_at", "2015-11-11 17:36:25.541003"], ["updated_at", "2015-11-11 17:36:25.541003"], ["auth_token", "sXuqKF1HWvmEG47EPmTj9A"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 6"], ["author_id", 37], ["created_at", "2015-11-11 17:36:25.542464"], ["updated_at", "2015-11-11 17:36:25.542464"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "comments" ("body", "author_id", "post_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["body", "Foo comment6."], ["author_id", 36], ["post_id", 18], ["created_at", "2015-11-11 17:36:25.543309"], ["updated_at", "2015-11-11 17:36:25.543309"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo13@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "oQty-7iD3IrbJk3JPoyiIQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo13@test.com"], ["password_digest", "$2a$04$F7ftqQwA7u7j5QIQFmV9mOO03iQULPSevB3zS4AZv26PvJLkPtnPi"], ["created_at", "2015-11-11 17:36:25.546039"], ["updated_at", "2015-11-11 17:36:25.546039"], ["auth_token", "oQty-7iD3IrbJk3JPoyiIQ"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mLike Load (0.1ms)[0m  SELECT "likes".* FROM "likes" WHERE "likes"."liked_id" = $1 AND "likes"."liked_type" = $2  [["liked_id", 2], ["liked_type", "Comment"]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "comments" WHERE "comments"."id" = $1[0m  [["id", 2]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
