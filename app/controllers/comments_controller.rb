@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
   def create
 
-    @new_comment = Comment.new(comment_params)
+    @new_comment = current_user.comments.build(comment_params)
     if @new_comment.save
       flash[:success] = "Comment successfully created!"
     else
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 
   def comment_params
 
-    params.require(:comment).permit(:body, :author_id, :post_id)
+    params.require(:comment).permit(:body, :post_id)
 
   end
 
@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     unless comment.author == current_user
       flash[:danger] = "Unauthorized Access."
-      redirect_to users_posts_path(comment.post.author)
+      redirect_to user_posts_path(comment.post.author)
     end
 
   end
