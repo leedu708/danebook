@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in(@user)
       flash[:success] = "User successfully created!"
-      redirect_to root_url
+      redirect_to user_posts_path(@user)
     else
       flash.now[:danger] = "User failed to be created."
       render :new
