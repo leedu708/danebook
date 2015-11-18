@@ -88,7 +88,7 @@ describe User do
         expect_destroyed_orphan(post)
       end
 
-      it 'should nullify dependent Comments' do
+      it 'should delete dependent Comments' do
         expect_destroyed_orphan(comment)
       end
 

@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resource :profile, :only => [:new]
     resources :posts, :only => [:create, :index, :destroy]
     resources :friends, :only => [:index, :create, :destroy]
+    resources :photos, :only => [:new, :create, :index, :show, :destroy] do
+      resource :profile_photo, :only => [:update]
+      resource :cover_photo, :only => [:update]
+    end
   end
 
   resources :comments, :only => [:create, :destroy]

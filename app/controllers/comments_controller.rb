@@ -12,21 +12,20 @@ class CommentsController < ApplicationController
       flash[:danger] = "Comment failed to save - please try again."
     end
 
-    redirect_to user_posts_path(@new_comment.post.author)
+    redirect_to :back
 
   end
 
   def destroy
 
     comment = Comment.find(params[:id])
-    post_author = comment.post.author
     if comment.destroy!
       flash[:success] = 'Comment successfully deleted!'
     else
       flash[:danger] = 'Comment failed to be deleted - please try again.'
     end
 
-    redirect_to user_posts_path(post_author)
+    redirect_to :back
 
   end
 
@@ -34,7 +33,7 @@ class CommentsController < ApplicationController
 
   def comment_params
 
-    params.require(:comment).permit(:body, :post_id)
+    params.require(:comment).permit(:body, :commentable_id, :commentable_type)
 
   end
 
@@ -43,7 +42,7 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     unless comment.author == current_user
       flash[:danger] = "Unauthorized Access."
-      redirect_to user_posts_path(comment.post.author)
+      redirect_to user_posts_path(comment.commentable.author)
     end
 
   end

@@ -1,0 +1,5 @@
+<div class='col-xs-3'>
+  <%= link_to user_photo_path(photo.owner, photo), alt: 'Individual Photo Page' do %>
+    <%= image_tag photo.photo.url(:thumb), class: 'img-thumbnail' %>
+  <% end %>
+</div>

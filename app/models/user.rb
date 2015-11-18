@@ -23,6 +23,11 @@ class User < ActiveRecord::Base
   has_many :users_friended_by, :through => :received_friendings,
                                :source => :friend_initiator
 
+  has_many :photos, :foreign_key => :owner_id,
+                    :dependent => :destroy
+  belongs_to :profile_photo, :class_name => 'Photo'
+  belongs_to :cover_photo, :class_name => 'Photo'
+
   validates :email, :uniqueness => true, :format => { :with => /.+@.+/, :message => "enter a valid email." }
   validates :password,
             :length => { :in => 5..24 },

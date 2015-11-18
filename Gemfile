@@ -37,6 +37,14 @@ gem 'twitter-bootstrap-rails'
 
 gem 'pg'
 
+gem 'faker'
+
+gem 'paperclip'
+
+gem 'aws-sdk', '< 2.0'
+
+gem 'figaro'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -49,8 +57,6 @@ group :development, :test do
 
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
 
-  gem 'faker'
-
   gem 'better_errors'
 
   gem 'rspec-rails'
@@ -58,6 +64,8 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
 
   gem 'guard-rspec', require: false
+
+  gem 'shoulda-matchers'
 end
 
 gem 'binding_of_caller'
@@ -70,7 +78,6 @@ end
 group :production do
 
   gem 'rails_12factor'
-
 
 end
 
