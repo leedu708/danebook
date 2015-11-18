@@ -9,11 +9,19 @@ class User < ActiveRecord::Base
 
   has_many :likes, :foreign_key => :liker_id,
                    :dependent => :destroy
-  # has_many :liked_posts, :through => :likes,
-                         # :source => :post
 
   has_many :comments, :foreign_key => :author_id,
                       :dependent => :destroy
+
+  has_many :initiated_friendings, :foreign_key => :friender_id,
+                                  :class_name => 'Friending'
+  has_many :friended_users, :through => :initiated_friendings,
+                            :source => :friend_recipient
+
+  has_many :received_friendings, :foreign_key => :friend_id,
+                                 :class_name => 'Friending'
+  has_many :users_friended_by, :through => :received_friendings,
+                               :source => :friend_initiator
 
   validates :email, :uniqueness => true, :format => { :with => /.+@.+/, :message => "enter a valid email." }
   validates :password,

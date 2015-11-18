@@ -43,9 +43,16 @@ User.all.each do |u|
     c.body = Faker::Lorem.paragraph(1,true,1)
     p.save!
   end
+
+  # Create friends for users
+  rand(5..25).times do
+    add_friend = User.all.sample
+    u.friended_users << add_friend unless u.friended_users.include?(add_friend)
+  end
+
 end
 
-puts "User posts and comments created."
+puts "User posts, comments, and friends created."
 
 # For each Post & each Comment, pick 0-7 random Users to Like it
 def assign_likes(object)

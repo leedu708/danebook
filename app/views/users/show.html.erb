@@ -1,6 +1,6 @@
 <main class="container content-container">
 
-  <%= render :partial => "shared/header", :locals => { :user => @user, :toggled => "about" } %>
+  <%= render :partial => "shared/header", :locals => { :user => @user } %>
 
 
 
@@ -21,7 +21,8 @@
               </div>
 
               <div class="col-xs-4 text-right">
-                <%= link_to "Edit your profile", edit_user_path(current_user), class: "btn btn-primary btn-sm pull-right", alt: "Edit your profile" if @user == current_user %>
+                <!-- User Helper logic -->
+                <%= about_page_action if signed_in_user %>
               </div>
 
             </div>
