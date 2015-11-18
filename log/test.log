@@ -31481,3 +31481,785 @@ Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
   [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  ORDER BY "posts"."id" DESC LIMIT 1
   [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1418]]
   [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test1"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:32:59.026166"], ["updated_at", "2015-11-11 21:32:59.026166"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "CSjE2-v4n0Fe0fM6hmTraw"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo1@test.com"], ["password_digest", "$2a$04$IbT1CSM0ietB41JkXbFtbe.a6Y4clhoHCc0V2/i0VfXW7Gmq/hXbu"], ["created_at", "2015-11-11 21:32:59.035956"], ["updated_at", "2015-11-11 21:32:59.035956"], ["auth_token", "CSjE2-v4n0Fe0fM6hmTraw"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1420], ["updated_at", "2015-11-11 21:32:59.040548"], ["id", 673]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test2"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:32:59.048280"], ["updated_at", "2015-11-11 21:32:59.048280"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "CnZJrtSKFYmkju7-KCaJXw"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo2@test.com"], ["password_digest", "$2a$04$WU7WfPD3vCD5bNAOkX/SMOvUZPhiRov5Z/VXKaiSE.BJpG5NS9P76"], ["created_at", "2015-11-11 21:32:59.049995"], ["updated_at", "2015-11-11 21:32:59.049995"], ["auth_token", "CnZJrtSKFYmkju7-KCaJXw"]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1421], ["updated_at", "2015-11-11 21:32:59.051127"], ["id", 674]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 1"], ["author_id", 1421], ["created_at", "2015-11-11 21:32:59.053359"], ["updated_at", "2015-11-11 21:32:59.053359"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by LikesController#create as HTML
+  Parameters: {"liked_id"=>"538", "liked_type"=>"Post"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "CSjE2-v4n0Fe0fM6hmTraw"]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT 1[0m  [["id", 538]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "likes" ("liked_type", "liked_id", "liker_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["liked_type", "Post"], ["liked_id", 538], ["liker_id", 1420], ["created_at", "2015-11-11 21:32:59.066850"], ["updated_at", "2015-11-11 21:32:59.066850"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/
+Completed 302 Found in 12ms (ActiveRecord: 1.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test3"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:32:59.071110"], ["updated_at", "2015-11-11 21:32:59.071110"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo3@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "AdgXIWsasBUxyoeJxJaJWw"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo3@test.com"], ["password_digest", "$2a$04$JbR3YSgp7weK4prwWfbTGuRR183vu0.CRnKGZyuP4DOwqIbDBGwLG"], ["created_at", "2015-11-11 21:32:59.072583"], ["updated_at", "2015-11-11 21:32:59.072583"], ["auth_token", "AdgXIWsasBUxyoeJxJaJWw"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1422], ["updated_at", "2015-11-11 21:32:59.073473"], ["id", 675]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test4"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:32:59.079837"], ["updated_at", "2015-11-11 21:32:59.079837"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo4@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "OTMTGG523KdKZC3k4kyo-g"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo4@test.com"], ["password_digest", "$2a$04$/gfMlvQRqcEBfNbEu9BaLOrAg538rEy/dA3vspjjNhvuGktRXlV/6"], ["created_at", "2015-11-11 21:32:59.081865"], ["updated_at", "2015-11-11 21:32:59.081865"], ["auth_token", "OTMTGG523KdKZC3k4kyo-g"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1423], ["updated_at", "2015-11-11 21:32:59.082830"], ["id", 676]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test5"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:32:59.085637"], ["updated_at", "2015-11-11 21:32:59.085637"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo5@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "auUozGLiSt1GKhKSjN4CcA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo5@test.com"], ["password_digest", "$2a$04$zb7gefsppC7jejLtybiW9.kWTGtgV5gEBV9FCkVEiD3rBHLT8LJEC"], ["created_at", "2015-11-11 21:32:59.086893"], ["updated_at", "2015-11-11 21:32:59.086893"], ["auth_token", "auUozGLiSt1GKhKSjN4CcA"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1424], ["updated_at", "2015-11-11 21:32:59.087730"], ["id", 677]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 2"], ["author_id", 1424], ["created_at", "2015-11-11 21:32:59.088594"], ["updated_at", "2015-11-11 21:32:59.088594"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "comments" ("body", "author_id", "post_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["body", "Foo comment1."], ["author_id", 1423], ["post_id", 539], ["created_at", "2015-11-11 21:32:59.089975"], ["updated_at", "2015-11-11 21:32:59.089975"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by LikesController#create as HTML
+  Parameters: {"liked_id"=>"149", "liked_type"=>"Comment"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "AdgXIWsasBUxyoeJxJaJWw"]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT  "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT 1[0m  [["id", 149]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "likes" ("liked_type", "liked_id", "liker_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["liked_type", "Comment"], ["liked_id", 149], ["liker_id", 1422], ["created_at", "2015-11-11 21:32:59.093730"], ["updated_at", "2015-11-11 21:32:59.093730"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test1"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:17.781768"], ["updated_at", "2015-11-11 21:34:17.781768"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "QpYwf8SbPv4WHOjZHPtJ-g"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo1@test.com"], ["password_digest", "$2a$04$lv/nSLPlR/ggoeromYWvwObmdL8HnH8eZEhGLBcy.4AaId873Ew32"], ["created_at", "2015-11-11 21:34:17.791265"], ["updated_at", "2015-11-11 21:34:17.791265"], ["auth_token", "QpYwf8SbPv4WHOjZHPtJ-g"]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1425], ["updated_at", "2015-11-11 21:34:17.795788"], ["id", 678]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 1"], ["author_id", 1425], ["created_at", "2015-11-11 21:34:17.806014"], ["updated_at", "2015-11-11 21:34:17.806014"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 2"], ["author_id", 1425], ["created_at", "2015-11-11 21:34:17.807225"], ["updated_at", "2015-11-11 21:34:17.807225"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test2"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:17.809574"], ["updated_at", "2015-11-11 21:34:17.809574"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "SpEpuxbC1BiVsDXeMN6OTg"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo2@test.com"], ["password_digest", "$2a$04$hUGPqzjuJY5YhQIGtm//tO4WZjz8BuRC6XpNYvuMeuzlwoxW0bsOq"], ["created_at", "2015-11-11 21:34:17.811527"], ["updated_at", "2015-11-11 21:34:17.811527"], ["auth_token", "SpEpuxbC1BiVsDXeMN6OTg"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1426], ["updated_at", "2015-11-11 21:34:17.812585"], ["id", 679]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1425"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1425]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "SpEpuxbC1BiVsDXeMN6OTg"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test3"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:17.823767"], ["updated_at", "2015-11-11 21:34:17.823767"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo3@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "oYeQvf-D2yRYZSgb6jK6xw"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo3@test.com"], ["password_digest", "$2a$04$LTofU7ny6TEzKifQ79nPR.jwhp446JO/.ED04KIoCkv/f54C02ftq"], ["created_at", "2015-11-11 21:34:17.825747"], ["updated_at", "2015-11-11 21:34:17.825747"], ["auth_token", "oYeQvf-D2yRYZSgb6jK6xw"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1427], ["updated_at", "2015-11-11 21:34:17.826959"], ["id", 680]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 3"], ["author_id", 1427], ["created_at", "2015-11-11 21:34:17.828658"], ["updated_at", "2015-11-11 21:34:17.828658"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 4"], ["author_id", 1427], ["created_at", "2015-11-11 21:34:17.829728"], ["updated_at", "2015-11-11 21:34:17.829728"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test4"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:17.831707"], ["updated_at", "2015-11-11 21:34:17.831707"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo4@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "CNf-nopnmTjYu6NxcIbh2w"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo4@test.com"], ["password_digest", "$2a$04$JBUkyqO/ZrtpIhs5.BXsNOPEtZKR9Z2klYLtMRplyWcaLlMIQMdhe"], ["created_at", "2015-11-11 21:34:17.833216"], ["updated_at", "2015-11-11 21:34:17.833216"], ["auth_token", "CNf-nopnmTjYu6NxcIbh2w"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1428], ["updated_at", "2015-11-11 21:34:17.834165"], ["id", 681]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1427"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1427]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "CNf-nopnmTjYu6NxcIbh2w"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1427]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1427]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1427]]
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test5"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:17.840817"], ["updated_at", "2015-11-11 21:34:17.840817"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo5@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "5iCk0S96-6FluP7LxfB_iQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo5@test.com"], ["password_digest", "$2a$04$RjQkKuiCz3Tg0xZR.GyfFOsFdwMUrawFl3b1rNQND4WLUno2jhrE2"], ["created_at", "2015-11-11 21:34:17.842314"], ["updated_at", "2015-11-11 21:34:17.842314"], ["auth_token", "5iCk0S96-6FluP7LxfB_iQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1429], ["updated_at", "2015-11-11 21:34:17.843212"], ["id", 682]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 5"], ["author_id", 1429], ["created_at", "2015-11-11 21:34:17.844576"], ["updated_at", "2015-11-11 21:34:17.844576"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 6"], ["author_id", 1429], ["created_at", "2015-11-11 21:34:17.845634"], ["updated_at", "2015-11-11 21:34:17.845634"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test6"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:17.847601"], ["updated_at", "2015-11-11 21:34:17.847601"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo6@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "P4Pv2wEPCKHW5qFFGgItpA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo6@test.com"], ["password_digest", "$2a$04$YkRaV4vVRlYXB1sAUs3HLuoRf8yRvZmprGDGbPu9kRZw6rhCSGN7u"], ["created_at", "2015-11-11 21:34:17.848901"], ["updated_at", "2015-11-11 21:34:17.848901"], ["auth_token", "P4Pv2wEPCKHW5qFFGgItpA"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1430], ["updated_at", "2015-11-11 21:34:17.849795"], ["id", 683]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1429"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1429]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "P4Pv2wEPCKHW5qFFGgItpA"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1430]]
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test7"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:17.855526"], ["updated_at", "2015-11-11 21:34:17.855526"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo7@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "vgDn8X8gNBaE2XeBG4xL4Q"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo7@test.com"], ["password_digest", "$2a$04$3Sn6Xf0wKQuWAr4XGVzIVObVJdRwSVlDPKXoWbxscmIxb8RnuJN0a"], ["created_at", "2015-11-11 21:34:17.857866"], ["updated_at", "2015-11-11 21:34:17.857866"], ["auth_token", "vgDn8X8gNBaE2XeBG4xL4Q"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1431], ["updated_at", "2015-11-11 21:34:17.858951"], ["id", 684]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test8"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:17.861372"], ["updated_at", "2015-11-11 21:34:17.861372"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo8@test.com' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "-3_yaSg0dWaqhiB-MPmlnQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo8@test.com"], ["password_digest", "$2a$04$79ix8jnthAaxcE5THPGcheacbfOm7uNiBwEqzi.FdDWDylQP3uaO6"], ["created_at", "2015-11-11 21:34:17.862794"], ["updated_at", "2015-11-11 21:34:17.862794"], ["auth_token", "-3_yaSg0dWaqhiB-MPmlnQ"]]
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1432], ["updated_at", "2015-11-11 21:34:17.863664"], ["id", 685]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 7"], ["author_id", 1432], ["created_at", "2015-11-11 21:34:17.864509"], ["updated_at", "2015-11-11 21:34:17.864509"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test9"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:17.866505"], ["updated_at", "2015-11-11 21:34:17.866505"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo9@test.com' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "-pod-INXoAHI2RtgbH1EaQ"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo9@test.com"], ["password_digest", "$2a$04$9tZmD8uLRegW3GnQBFsc5Op1CiyYrJZdVv7R5KY3LceRScUnzOw0a"], ["created_at", "2015-11-11 21:34:17.867741"], ["updated_at", "2015-11-11 21:34:17.867741"], ["auth_token", "-pod-INXoAHI2RtgbH1EaQ"]]
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1433], ["updated_at", "2015-11-11 21:34:17.868518"], ["id", 686]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#create as HTML
+  Parameters: {"post"=>{"body"=>"I tried to make the attacked_user say this but I failed!", "author_id"=>"1433"}, "user_id"=>"1433"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "vgDn8X8gNBaE2XeBG4xL4Q"]]
+Redirected to http://test.host/users/1433/posts
+Filter chain halted as :require_current_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.1ms)
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  ORDER BY "posts"."id" DESC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1432]]
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test1"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:24.057152"], ["updated_at", "2015-11-11 21:34:24.057152"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "zVHK8yZmqnit1ySruYFkCQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo1@test.com"], ["password_digest", "$2a$04$0Zr5RspIu9uXaxoT7OtFu.Xixi5B0Z3azf0dobPu0C6on.WFPG5Uu"], ["created_at", "2015-11-11 21:34:24.066903"], ["updated_at", "2015-11-11 21:34:24.066903"], ["auth_token", "zVHK8yZmqnit1ySruYFkCQ"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1434], ["updated_at", "2015-11-11 21:34:24.071298"], ["id", 687]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 1"], ["author_id", 1434], ["created_at", "2015-11-11 21:34:24.081783"], ["updated_at", "2015-11-11 21:34:24.081783"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 2"], ["author_id", 1434], ["created_at", "2015-11-11 21:34:24.083119"], ["updated_at", "2015-11-11 21:34:24.083119"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test2"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:24.085214"], ["updated_at", "2015-11-11 21:34:24.085214"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "5BSeFWvZTLnEgxn1GsnMGA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo2@test.com"], ["password_digest", "$2a$04$eAJkxwKf6z2yOVYu0egzh.eIlKXkQl8ETqC4J1y5C7HAwFruTqMOe"], ["created_at", "2015-11-11 21:34:24.086736"], ["updated_at", "2015-11-11 21:34:24.086736"], ["auth_token", "5BSeFWvZTLnEgxn1GsnMGA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1435], ["updated_at", "2015-11-11 21:34:24.087682"], ["id", 688]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1434"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1434]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "5BSeFWvZTLnEgxn1GsnMGA"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 5ms (Views: 3.0ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test3"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:24.097787"], ["updated_at", "2015-11-11 21:34:24.097787"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo3@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "fw4GeF03lg9WFx1zS9j1Jg"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo3@test.com"], ["password_digest", "$2a$04$fdkgWZb7OW5DEm33tSRD.OsaCMzT54/eyg01zZCyo9nyKMAZc/6CG"], ["created_at", "2015-11-11 21:34:24.099762"], ["updated_at", "2015-11-11 21:34:24.099762"], ["auth_token", "fw4GeF03lg9WFx1zS9j1Jg"]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1436], ["updated_at", "2015-11-11 21:34:24.101046"], ["id", 689]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 3"], ["author_id", 1436], ["created_at", "2015-11-11 21:34:24.102861"], ["updated_at", "2015-11-11 21:34:24.102861"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 4"], ["author_id", 1436], ["created_at", "2015-11-11 21:34:24.103996"], ["updated_at", "2015-11-11 21:34:24.103996"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test4"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:24.106101"], ["updated_at", "2015-11-11 21:34:24.106101"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo4@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "yCxq9Y3KX3AvMc-V_i1vWA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo4@test.com"], ["password_digest", "$2a$04$NnG/EjbazcLJ9tT2WAewB.f.IC.zhOtyYunxVlXRukO8qlUua15cC"], ["created_at", "2015-11-11 21:34:24.107544"], ["updated_at", "2015-11-11 21:34:24.107544"], ["auth_token", "yCxq9Y3KX3AvMc-V_i1vWA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1437], ["updated_at", "2015-11-11 21:34:24.108482"], ["id", 690]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1436"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1436]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "yCxq9Y3KX3AvMc-V_i1vWA"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1436]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1436]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1436]]
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test5"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:24.115172"], ["updated_at", "2015-11-11 21:34:24.115172"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo5@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "zqce5j2-kYtHDVwve-73Yg"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo5@test.com"], ["password_digest", "$2a$04$tlIn9LfcMh97QFxMcVZJEOg7mMFJydV.2wxHAmVmj4nRt9lQRk0Um"], ["created_at", "2015-11-11 21:34:24.116935"], ["updated_at", "2015-11-11 21:34:24.116935"], ["auth_token", "zqce5j2-kYtHDVwve-73Yg"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1438], ["updated_at", "2015-11-11 21:34:24.117830"], ["id", 691]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 5"], ["author_id", 1438], ["created_at", "2015-11-11 21:34:24.119096"], ["updated_at", "2015-11-11 21:34:24.119096"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 6"], ["author_id", 1438], ["created_at", "2015-11-11 21:34:24.120085"], ["updated_at", "2015-11-11 21:34:24.120085"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test6"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:24.122024"], ["updated_at", "2015-11-11 21:34:24.122024"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo6@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "Il6lZNAnIiPNxtdEZTEhVQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo6@test.com"], ["password_digest", "$2a$04$6TOnelW2M2/EmRsqrajXg.ZGSAFMa2la6MVsbTVBjfBhpl4jVpSVG"], ["created_at", "2015-11-11 21:34:24.123361"], ["updated_at", "2015-11-11 21:34:24.123361"], ["auth_token", "Il6lZNAnIiPNxtdEZTEhVQ"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1439], ["updated_at", "2015-11-11 21:34:24.124223"], ["id", 692]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1438"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1438]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "Il6lZNAnIiPNxtdEZTEhVQ"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1439]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test7"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:24.129647"], ["updated_at", "2015-11-11 21:34:24.129647"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo7@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "4TE72D0i0Pz74Vr61qfN4g"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo7@test.com"], ["password_digest", "$2a$04$X0Eo8czXtWVs2FeRj3m8p.JDg6rSVYMDJ2gatS0x2CWHlE8DSGE6e"], ["created_at", "2015-11-11 21:34:24.131441"], ["updated_at", "2015-11-11 21:34:24.131441"], ["auth_token", "4TE72D0i0Pz74Vr61qfN4g"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1440], ["updated_at", "2015-11-11 21:34:24.132571"], ["id", 693]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test8"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:24.135140"], ["updated_at", "2015-11-11 21:34:24.135140"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo8@test.com' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "vfFk62MpUEyrPnvjdaiY6Q"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo8@test.com"], ["password_digest", "$2a$04$xrq.5DR2inXL62ZY5QHndOGQw3eGKdJM5lF6jzLfafryGDDoP0H2K"], ["created_at", "2015-11-11 21:34:24.136590"], ["updated_at", "2015-11-11 21:34:24.136590"], ["auth_token", "vfFk62MpUEyrPnvjdaiY6Q"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1441], ["updated_at", "2015-11-11 21:34:24.137562"], ["id", 694]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 7"], ["author_id", 1441], ["created_at", "2015-11-11 21:34:24.138512"], ["updated_at", "2015-11-11 21:34:24.138512"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test9"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:24.140494"], ["updated_at", "2015-11-11 21:34:24.140494"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo9@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "joVIfh9MUHnpirElY0z1aQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo9@test.com"], ["password_digest", "$2a$04$Vx4mA5Ze4F/bRiUvYup7sej0id.JKE2lfjyBYybudKExztwW0KZAm"], ["created_at", "2015-11-11 21:34:24.141815"], ["updated_at", "2015-11-11 21:34:24.141815"], ["auth_token", "joVIfh9MUHnpirElY0z1aQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1442], ["updated_at", "2015-11-11 21:34:24.142663"], ["id", 695]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#create as HTML
+  Parameters: {"post"=>{"body"=>"Malicious post", "author_id"=>"1442"}, "user_id"=>"1442"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "4TE72D0i0Pz74Vr61qfN4g"]]
+Redirected to http://test.host/users/1442/posts
+Filter chain halted as :require_current_user rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  ORDER BY "posts"."id" DESC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1441]]
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test1"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:53.682305"], ["updated_at", "2015-11-11 21:34:53.682305"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "nd_ZKAMyCo7mFhr29wVdYg"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo1@test.com"], ["password_digest", "$2a$04$oKubDNnUZKbCpyTehqM7Y.IPTpB5668FZP6MiBiP7xv6MYHcdgNey"], ["created_at", "2015-11-11 21:34:53.692429"], ["updated_at", "2015-11-11 21:34:53.692429"], ["auth_token", "nd_ZKAMyCo7mFhr29wVdYg"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1443], ["updated_at", "2015-11-11 21:34:53.696518"], ["id", 696]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 1"], ["author_id", 1443], ["created_at", "2015-11-11 21:34:53.707287"], ["updated_at", "2015-11-11 21:34:53.707287"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 2"], ["author_id", 1443], ["created_at", "2015-11-11 21:34:53.708654"], ["updated_at", "2015-11-11 21:34:53.708654"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test2"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:53.710805"], ["updated_at", "2015-11-11 21:34:53.710805"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "0FmLV3mJYpW6DIDHw5XTFQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo2@test.com"], ["password_digest", "$2a$04$6B3s5Hxfcv2ZsN2lYGsaguGG1gi0.hQYpKx1qRa05YBThwWV/X0Aq"], ["created_at", "2015-11-11 21:34:53.712352"], ["updated_at", "2015-11-11 21:34:53.712352"], ["auth_token", "0FmLV3mJYpW6DIDHw5XTFQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1444], ["updated_at", "2015-11-11 21:34:53.713283"], ["id", 697]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1443"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1443]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "0FmLV3mJYpW6DIDHw5XTFQ"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 5ms (Views: 3.0ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test3"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:53.724007"], ["updated_at", "2015-11-11 21:34:53.724007"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo3@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "pxs7p0hjB-dzvM4IhanPKA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo3@test.com"], ["password_digest", "$2a$04$RxwaPZgbptA88m.yOIsmQ.xgflKZ/p5UaK08UO4Qq3xFSFKiheZi."], ["created_at", "2015-11-11 21:34:53.726008"], ["updated_at", "2015-11-11 21:34:53.726008"], ["auth_token", "pxs7p0hjB-dzvM4IhanPKA"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1445], ["updated_at", "2015-11-11 21:34:53.727085"], ["id", 698]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 3"], ["author_id", 1445], ["created_at", "2015-11-11 21:34:53.728615"], ["updated_at", "2015-11-11 21:34:53.728615"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 4"], ["author_id", 1445], ["created_at", "2015-11-11 21:34:53.729773"], ["updated_at", "2015-11-11 21:34:53.729773"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test4"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:53.731778"], ["updated_at", "2015-11-11 21:34:53.731778"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo4@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "-JDoqnsN0LpiRFTitV6wcQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo4@test.com"], ["password_digest", "$2a$04$c23BI1Wm3ps.XxxXm71dgObW/A1c923V.mxhD9/ubn6QsbReO9EUm"], ["created_at", "2015-11-11 21:34:53.733130"], ["updated_at", "2015-11-11 21:34:53.733130"], ["auth_token", "-JDoqnsN0LpiRFTitV6wcQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1446], ["updated_at", "2015-11-11 21:34:53.734040"], ["id", 699]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1445"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1445]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "-JDoqnsN0LpiRFTitV6wcQ"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1445]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1445]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1445]]
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test5"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:53.740965"], ["updated_at", "2015-11-11 21:34:53.740965"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo5@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "heqdCwvOYINaaJ6m9geckA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo5@test.com"], ["password_digest", "$2a$04$iUkqUSovLMnh9/L/UkV6ze5WqJfDJZCnrNtUaFM9yJLEJ8Pr7NnH6"], ["created_at", "2015-11-11 21:34:53.742846"], ["updated_at", "2015-11-11 21:34:53.742846"], ["auth_token", "heqdCwvOYINaaJ6m9geckA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1447], ["updated_at", "2015-11-11 21:34:53.743821"], ["id", 700]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 5"], ["author_id", 1447], ["created_at", "2015-11-11 21:34:53.745446"], ["updated_at", "2015-11-11 21:34:53.745446"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 6"], ["author_id", 1447], ["created_at", "2015-11-11 21:34:53.746536"], ["updated_at", "2015-11-11 21:34:53.746536"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test6"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:53.748494"], ["updated_at", "2015-11-11 21:34:53.748494"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo6@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "bUF6PoDJntNYWzO0yomCbA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo6@test.com"], ["password_digest", "$2a$04$BbM9MjzIPa0/fhKrRNU2BexWxyzicADreAfJCUDsx0Gdw9Q1KwVb6"], ["created_at", "2015-11-11 21:34:53.749748"], ["updated_at", "2015-11-11 21:34:53.749748"], ["auth_token", "bUF6PoDJntNYWzO0yomCbA"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1448], ["updated_at", "2015-11-11 21:34:53.750632"], ["id", 701]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1447"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1447]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "bUF6PoDJntNYWzO0yomCbA"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1448]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test7"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:53.756460"], ["updated_at", "2015-11-11 21:34:53.756460"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo7@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "9_tBoSOVjzSgbaw2rZkK5A"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo7@test.com"], ["password_digest", "$2a$04$Su3Ml7x6lQnyIHhLFda/VOpuGQdilI373yx59gUbIDDhSAwRkQIxK"], ["created_at", "2015-11-11 21:34:53.758940"], ["updated_at", "2015-11-11 21:34:53.758940"], ["auth_token", "9_tBoSOVjzSgbaw2rZkK5A"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1449], ["updated_at", "2015-11-11 21:34:53.759951"], ["id", 702]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test8"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:53.762268"], ["updated_at", "2015-11-11 21:34:53.762268"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo8@test.com' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "6-u4bY2Q7usJN0o1wNNvxg"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo8@test.com"], ["password_digest", "$2a$04$YawzdGITNG8ia/MzGsIFteynlBnmG8WooBDyncjExpxQf7cY4vH4K"], ["created_at", "2015-11-11 21:34:53.763521"], ["updated_at", "2015-11-11 21:34:53.763521"], ["auth_token", "6-u4bY2Q7usJN0o1wNNvxg"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1450], ["updated_at", "2015-11-11 21:34:53.764378"], ["id", 703]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 7"], ["author_id", 1450], ["created_at", "2015-11-11 21:34:53.765180"], ["updated_at", "2015-11-11 21:34:53.765180"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test9"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:34:53.767188"], ["updated_at", "2015-11-11 21:34:53.767188"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo9@test.com' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "b1PIS7WJw4UWzxTjnIN3qw"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo9@test.com"], ["password_digest", "$2a$04$vtJ8dALnMxMku3hL47v/KO21OKYkcSVNZ.U/hR0M/yGiu6gpvOzgG"], ["created_at", "2015-11-11 21:34:53.768483"], ["updated_at", "2015-11-11 21:34:53.768483"], ["auth_token", "b1PIS7WJw4UWzxTjnIN3qw"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1451], ["updated_at", "2015-11-11 21:34:53.769260"], ["id", 704]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#create as HTML
+  Parameters: {"post"=>{"body"=>"Malicious post", "author_id"=>"1451"}, "user_id"=>"1451"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "9_tBoSOVjzSgbaw2rZkK5A"]]
+Redirected to http://test.host/users/1451/posts
+Filter chain halted as :require_current_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.1ms)
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  ORDER BY "posts"."id" DESC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1450]]
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test1"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:17.314757"], ["updated_at", "2015-11-11 21:35:17.314757"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "rUeJ5bxFf-y_cScJfllz9g"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo1@test.com"], ["password_digest", "$2a$04$5fe.t.cwZTTc66qlutiRMe4ucZjFQG20pHYOeadzDcGVVoz2zeos2"], ["created_at", "2015-11-11 21:35:17.324821"], ["updated_at", "2015-11-11 21:35:17.324821"], ["auth_token", "rUeJ5bxFf-y_cScJfllz9g"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1452], ["updated_at", "2015-11-11 21:35:17.328945"], ["id", 705]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 1"], ["author_id", 1452], ["created_at", "2015-11-11 21:35:17.339928"], ["updated_at", "2015-11-11 21:35:17.339928"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 2"], ["author_id", 1452], ["created_at", "2015-11-11 21:35:17.341348"], ["updated_at", "2015-11-11 21:35:17.341348"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test2"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:17.343494"], ["updated_at", "2015-11-11 21:35:17.343494"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "VEto4kBiSSICFaGDQjSw5Q"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo2@test.com"], ["password_digest", "$2a$04$16bCTrgwNcd.a.68t3RQNur2Ry6UL9E/9w8gsZmx6M0GM43.Sx4qi"], ["created_at", "2015-11-11 21:35:17.344966"], ["updated_at", "2015-11-11 21:35:17.344966"], ["auth_token", "VEto4kBiSSICFaGDQjSw5Q"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1453], ["updated_at", "2015-11-11 21:35:17.345960"], ["id", 706]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1452"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1452]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "VEto4kBiSSICFaGDQjSw5Q"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test3"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:17.356643"], ["updated_at", "2015-11-11 21:35:17.356643"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo3@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "pE3kV3tE6Fv4zIznNgGlzA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo3@test.com"], ["password_digest", "$2a$04$wxAIYcoq7.wxt7fEPHq.a./pLsGVHIW7mXOv/ImM5sTY2vYK/jaxK"], ["created_at", "2015-11-11 21:35:17.358735"], ["updated_at", "2015-11-11 21:35:17.358735"], ["auth_token", "pE3kV3tE6Fv4zIznNgGlzA"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1454], ["updated_at", "2015-11-11 21:35:17.359720"], ["id", 707]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 3"], ["author_id", 1454], ["created_at", "2015-11-11 21:35:17.361034"], ["updated_at", "2015-11-11 21:35:17.361034"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 4"], ["author_id", 1454], ["created_at", "2015-11-11 21:35:17.361981"], ["updated_at", "2015-11-11 21:35:17.361981"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test4"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:17.363979"], ["updated_at", "2015-11-11 21:35:17.363979"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo4@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "hxqjXJsmDWMEZZlLvkEnrw"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo4@test.com"], ["password_digest", "$2a$04$b9gUOwug4LofG3z3Zg1Rm.BPsjAcnnFpgNsNgTrAvdS4Y4irzHawC"], ["created_at", "2015-11-11 21:35:17.365253"], ["updated_at", "2015-11-11 21:35:17.365253"], ["auth_token", "hxqjXJsmDWMEZZlLvkEnrw"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1455], ["updated_at", "2015-11-11 21:35:17.366117"], ["id", 708]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1454"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1454]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "hxqjXJsmDWMEZZlLvkEnrw"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1454]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1454]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1454]]
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test5"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:17.372930"], ["updated_at", "2015-11-11 21:35:17.372930"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo5@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "ZQzjWnfl1RA7BzQZaSLzXQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo5@test.com"], ["password_digest", "$2a$04$CYjfPTgdSTtGydqGHh4E0.H1k1W2GvwGq5sPAwEnzXoWVfdDfJKuG"], ["created_at", "2015-11-11 21:35:17.374388"], ["updated_at", "2015-11-11 21:35:17.374388"], ["auth_token", "ZQzjWnfl1RA7BzQZaSLzXQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1456], ["updated_at", "2015-11-11 21:35:17.375236"], ["id", 709]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 5"], ["author_id", 1456], ["created_at", "2015-11-11 21:35:17.376478"], ["updated_at", "2015-11-11 21:35:17.376478"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 6"], ["author_id", 1456], ["created_at", "2015-11-11 21:35:17.377394"], ["updated_at", "2015-11-11 21:35:17.377394"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test6"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:17.379302"], ["updated_at", "2015-11-11 21:35:17.379302"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo6@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "Xk0bPn-zgaFnvBgciF4wrg"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo6@test.com"], ["password_digest", "$2a$04$CycPYcCW0oicOlvKflweaerRN94VhMz3XX/8jtQmPuUDUW3eoNLVC"], ["created_at", "2015-11-11 21:35:17.380664"], ["updated_at", "2015-11-11 21:35:17.380664"], ["auth_token", "Xk0bPn-zgaFnvBgciF4wrg"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1457], ["updated_at", "2015-11-11 21:35:17.381561"], ["id", 710]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1456"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1456]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "Xk0bPn-zgaFnvBgciF4wrg"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1457]]
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test7"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:17.387083"], ["updated_at", "2015-11-11 21:35:17.387083"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo7@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "hXyc9ZVvRiSmAde4jzv9ow"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo7@test.com"], ["password_digest", "$2a$04$tvVcllv2./fxZ1PaW8e3v.3/m9SFIimWNTAFJFTNGGvlu6Oq6te7u"], ["created_at", "2015-11-11 21:35:17.388965"], ["updated_at", "2015-11-11 21:35:17.388965"], ["auth_token", "hXyc9ZVvRiSmAde4jzv9ow"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1458], ["updated_at", "2015-11-11 21:35:17.389901"], ["id", 711]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test8"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:17.392215"], ["updated_at", "2015-11-11 21:35:17.392215"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo8@test.com' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "YNb2nDKwLmFxTzyI8ai7nQ"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo8@test.com"], ["password_digest", "$2a$04$fv425OvYB8zZdaJP1nOjzOs1edAXccDQ..FGx5GDiFwjhhpENOdUq"], ["created_at", "2015-11-11 21:35:17.393461"], ["updated_at", "2015-11-11 21:35:17.393461"], ["auth_token", "YNb2nDKwLmFxTzyI8ai7nQ"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1459], ["updated_at", "2015-11-11 21:35:17.394287"], ["id", 712]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 7"], ["author_id", 1459], ["created_at", "2015-11-11 21:35:17.395098"], ["updated_at", "2015-11-11 21:35:17.395098"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test9"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:17.396929"], ["updated_at", "2015-11-11 21:35:17.396929"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo9@test.com' LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "azotV3wcs47BOTTJT25EYA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo9@test.com"], ["password_digest", "$2a$04$muk6Ddeo2RnSTJ98HBS9SOh/VKA5pZXp0xxR0PS8uDUMTpa88npUG"], ["created_at", "2015-11-11 21:35:17.398185"], ["updated_at", "2015-11-11 21:35:17.398185"], ["auth_token", "azotV3wcs47BOTTJT25EYA"]]
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1460], ["updated_at", "2015-11-11 21:35:17.398956"], ["id", 713]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#create as HTML
+  Parameters: {"post"=>{"body"=>"Malicious post", "author_id"=>"1460"}, "user_id"=>"1460"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "hXyc9ZVvRiSmAde4jzv9ow"]]
+Redirected to http://test.host/users/1460/posts
+Filter chain halted as :require_current_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.1ms)
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  ORDER BY "posts"."id" DESC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1459]]
+  [1m[35m (0.0ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test1"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:48.300890"], ["updated_at", "2015-11-11 21:35:48.300890"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo1@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "QoTuAZG9kNAuW2HGJQ07pA"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo1@test.com"], ["password_digest", "$2a$04$k5GkIEx1pJLMKyaCAMqMyOnT4tBj9PsMMhXzbai4tRdQlNo4ULNSS"], ["created_at", "2015-11-11 21:35:48.312431"], ["updated_at", "2015-11-11 21:35:48.312431"], ["auth_token", "QoTuAZG9kNAuW2HGJQ07pA"]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1461], ["updated_at", "2015-11-11 21:35:48.317561"], ["id", 714]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 1"], ["author_id", 1461], ["created_at", "2015-11-11 21:35:48.329565"], ["updated_at", "2015-11-11 21:35:48.329565"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 2"], ["author_id", 1461], ["created_at", "2015-11-11 21:35:48.331419"], ["updated_at", "2015-11-11 21:35:48.331419"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test2"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:48.334282"], ["updated_at", "2015-11-11 21:35:48.334282"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo2@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "IjNZByyhlqvBJIQ1jvT1yA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo2@test.com"], ["password_digest", "$2a$04$yz43qXmMS52.6cCa6FCOheUPc8nwTEXh93yxABln93bUSOHQFKFB."], ["created_at", "2015-11-11 21:35:48.336295"], ["updated_at", "2015-11-11 21:35:48.336295"], ["auth_token", "IjNZByyhlqvBJIQ1jvT1yA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1462], ["updated_at", "2015-11-11 21:35:48.337596"], ["id", 715]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1461"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1461]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "IjNZByyhlqvBJIQ1jvT1yA"]]
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 8ms (Views: 3.9ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test3"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:48.352120"], ["updated_at", "2015-11-11 21:35:48.352120"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo3@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "vaw2gfGkuzdGCmhV6rHb4w"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo3@test.com"], ["password_digest", "$2a$04$r9JJ/Q/L2Ig68z.Wt/elQeLkmL9ZliXv57H42G1VS4uxUXzRSijR."], ["created_at", "2015-11-11 21:35:48.354377"], ["updated_at", "2015-11-11 21:35:48.354377"], ["auth_token", "vaw2gfGkuzdGCmhV6rHb4w"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1463], ["updated_at", "2015-11-11 21:35:48.355571"], ["id", 716]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 3"], ["author_id", 1463], ["created_at", "2015-11-11 21:35:48.357324"], ["updated_at", "2015-11-11 21:35:48.357324"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 4"], ["author_id", 1463], ["created_at", "2015-11-11 21:35:48.358760"], ["updated_at", "2015-11-11 21:35:48.358760"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test4"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:48.361215"], ["updated_at", "2015-11-11 21:35:48.361215"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo4@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "OStYGnHQS6ohWvN7wCW9VA"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo4@test.com"], ["password_digest", "$2a$04$bOlHAyOVzRHpUYf2lPvFGeND3QW6mP8jcFhMcGre7hCuX9juIdigm"], ["created_at", "2015-11-11 21:35:48.362941"], ["updated_at", "2015-11-11 21:35:48.362941"], ["auth_token", "OStYGnHQS6ohWvN7wCW9VA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1464], ["updated_at", "2015-11-11 21:35:48.364190"], ["id", 717]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1463"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1463]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "OStYGnHQS6ohWvN7wCW9VA"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1463]]
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1  [["author_id", 1463]]
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1463]]
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test5"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:48.372909"], ["updated_at", "2015-11-11 21:35:48.372909"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo5@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "GReaHfpsETTKr6q1y1RAhg"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo5@test.com"], ["password_digest", "$2a$04$IdK4wLhRo/dXeMmO3guYJeg2eL7qsWOJEKp.gzVBgXXz.bcXCFMWC"], ["created_at", "2015-11-11 21:35:48.375224"], ["updated_at", "2015-11-11 21:35:48.375224"], ["auth_token", "GReaHfpsETTKr6q1y1RAhg"]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1465], ["updated_at", "2015-11-11 21:35:48.376763"], ["id", 718]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 5"], ["author_id", 1465], ["created_at", "2015-11-11 21:35:48.379110"], ["updated_at", "2015-11-11 21:35:48.379110"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["body", "Foo post 6"], ["author_id", 1465], ["created_at", "2015-11-11 21:35:48.380493"], ["updated_at", "2015-11-11 21:35:48.380493"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test6"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:48.382902"], ["updated_at", "2015-11-11 21:35:48.382902"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo6@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "4PY4gELsrExR1tcRq9m_VA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo6@test.com"], ["password_digest", "$2a$04$ORz6/LeO6lZvIjL46nZJ8uZj0xgW1m43zX/ZYZpLd49Zt0fcGQFmO"], ["created_at", "2015-11-11 21:35:48.384624"], ["updated_at", "2015-11-11 21:35:48.384624"], ["auth_token", "4PY4gELsrExR1tcRq9m_VA"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1466], ["updated_at", "2015-11-11 21:35:48.385704"], ["id", 719]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1465"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1465]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "4PY4gELsrExR1tcRq9m_VA"]]
+  Rendered posts/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1466]]
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["first_name", "Foo"], ["last_name", "Test7"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:48.391764"], ["updated_at", "2015-11-11 21:35:48.391764"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo7@test.com' LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1  [["auth_token", "uzxzDDYc7JswrONp72tDeA"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "foo7@test.com"], ["password_digest", "$2a$04$hoLBYBtP7VFb.latyrAmn.voUhOFDLZiqRA4jODjjWVNhqxBAtEKW"], ["created_at", "2015-11-11 21:35:48.393681"], ["updated_at", "2015-11-11 21:35:48.393681"], ["auth_token", "uzxzDDYc7JswrONp72tDeA"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["user_id", 1467], ["updated_at", "2015-11-11 21:35:48.394716"], ["id", 720]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test8"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:48.397122"], ["updated_at", "2015-11-11 21:35:48.397122"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo8@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "F0KY6DZI1i7Pp39-rPZoTw"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo8@test.com"], ["password_digest", "$2a$04$bvwrnR0qScL3L5Sw0JgREeBVo5jfMvAd/wlQLOgr3QZpsvh0Y484W"], ["created_at", "2015-11-11 21:35:48.398637"], ["updated_at", "2015-11-11 21:35:48.398637"], ["auth_token", "F0KY6DZI1i7Pp39-rPZoTw"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1468], ["updated_at", "2015-11-11 21:35:48.399558"], ["id", 721]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("body", "author_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["body", "Foo post 7"], ["author_id", 1468], ["created_at", "2015-11-11 21:35:48.400493"], ["updated_at", "2015-11-11 21:35:48.400493"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "profiles" ("first_name", "last_name", "gender", "birthdate", "college", "hometown", "currently_lives", "telephone", "words_to_live_by", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["first_name", "Foo"], ["last_name", "Test9"], ["gender", "Male"], ["birthdate", "1995-11-11"], ["college", "Test University"], ["hometown", "Fooville"], ["currently_lives", "Testing City"], ["telephone", "456-654-4565"], ["words_to_live_by", "Cool quote."], ["description", "Cool sentences."], ["created_at", "2015-11-11 21:35:48.402772"], ["updated_at", "2015-11-11 21:35:48.402772"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'foo9@test.com' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "G9SoYKC13rFq7iQczm193w"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "auth_token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "foo9@test.com"], ["password_digest", "$2a$04$yuWVooK7xHZWnGFSbxIGMOJpN3lk1d5X5Gkob94yl8UtmkIiSoWQS"], ["created_at", "2015-11-11 21:35:48.404624"], ["updated_at", "2015-11-11 21:35:48.404624"], ["auth_token", "G9SoYKC13rFq7iQczm193w"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "profiles" SET "user_id" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["user_id", 1469], ["updated_at", "2015-11-11 21:35:48.405782"], ["id", 722]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#create as HTML
+  Parameters: {"post"=>{"body"=>"Malicious post", "author_id"=>"1469"}, "user_id"=>"1469"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."auth_token" = $1 LIMIT 1[0m  [["auth_token", "uzxzDDYc7JswrONp72tDeA"]]
+Redirected to http://test.host/users/1469/posts
+Filter chain halted as :require_current_user rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+  [1m[35mPost Load (0.3ms)[0m  SELECT  "posts".* FROM "posts"  ORDER BY "posts"."id" DESC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1468]]
+  [1m[35m (0.1ms)[0m  ROLLBACK

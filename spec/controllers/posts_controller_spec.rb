@@ -35,7 +35,7 @@ describe PostsController do
   describe 'POST #create' do
 
     let(:malicious_user) { create(:user) }
-    let(:victim) { create(:user) }
+    let(:attacked_user) { create(:user) }
 
     before do
       request.cookies[:auth_token] = malicious_user.auth_token
@@ -45,17 +45,17 @@ describe PostsController do
       # create a dummy post to prevent false positives below
       create(:post)
 
-      test_post = "I tried to make the victim say this but I failed!"
+      test_post = "Malicious post"
 
-      post :create, :user_id => victim.id,
+      post :create, :user_id => attacked_user.id,
                     :post => attributes_for(:post,
                                             :body => test_post,
-                                            :author_id => victim.id)
+                                            :author_id => attacked_user.id)
 
       expect(flash[:danger]).to eq("Unauthorized Access!")
 
       last_post = Post.last
-      expect(last_post.author).not_to eq(victim)
+      expect(last_post.author).not_to eq(attacked_user)
       expect(last_post.body).not_to eq(test_post)
     end
 

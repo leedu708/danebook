@@ -8,6 +8,7 @@ describe LikesController do
 
     before do
       request.cookies[:auth_token] = user.auth_token
+      # HTTP_REFERER: the address that linked to this resource (back)
       request.env["HTTP_REFERER"] = user_posts_path(user)
     end
 
