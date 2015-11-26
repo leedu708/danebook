@@ -1,1 +1,3 @@
-config/applciation.yml
+
+# Ignore application config
+/config/applciation.yml
