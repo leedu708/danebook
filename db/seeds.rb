@@ -1,3 +1,5 @@
+MULTIPLIER = 2
+
 User.delete_all
 Profile.delete_all
 Post.delete_all
@@ -7,7 +9,7 @@ Like.delete_all
 puts "Old records destroyed."
 
 # Create 50 Users with Profiles
-50.times do
+(MULTIPLIER * 25).times do
   u = User.new
   u.password = 'password'
   p = u.build_profile
@@ -29,14 +31,14 @@ puts "Users and profiles created."
 
 User.all.each do |u|
   # Create 2-6 Posts for each User
-  rand(2..6).times do
+  (MULTIPLIER * rand(2..6)).times do
     p = u.posts.build
     p.body = Faker::Lorem.paragraph(1,true,3)
     p.save!
   end
 
   # Create 3-10 Comments for each User on random other user posts
-  rand(3..10).times do
+  (MULTIPLIER * rand(3..10)).times do
     p = Post.all.sample
     c = p.comments.build
     c.author_id = u.id
@@ -45,7 +47,7 @@ User.all.each do |u|
   end
 
   # Create friends for users
-  rand(5..25).times do
+  (MULTIPLIER * rand(1..8)).times do
     add_friend = User.all.sample
     u.friended_users << add_friend unless u.friended_users.include?(add_friend)
   end
@@ -56,7 +58,7 @@ puts "User posts, comments, and friends created."
 
 # For each Post & each Comment, pick 0-7 random Users to Like it
 def assign_likes(object)
-  rand(0..7).times do
+  (MULTIPLIER * rand(0..7)).times do
     random_user = User.all.sample
     object.likers << random_user unless object.liker_ids.include?(random_user.id)
   end

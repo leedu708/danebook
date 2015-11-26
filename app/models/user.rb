@@ -52,6 +52,12 @@ class User < ActiveRecord::Base
 
   end
 
+  def self.get_recently_active(newsfeed_posts)
+
+    User.where('id IN (?)', newsfeed_posts.pluck(:author_id).uniq)
+
+  end
+
   def self.send_welcome_email(id)
 
     user = User.find(id)

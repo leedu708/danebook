@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       sign_in(@user)
       flash[:success] = "You have successfully signed in!"
-      redirect_to user_posts_path(@user)
+      redirect_to user_newsfeed_path(@user)
     else
       flash[:danger] = "You have failed to sign in."
       redirect_to root_url
