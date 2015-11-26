@@ -23,7 +23,7 @@ class CoverPhotosController < ApplicationController
   def require_current_user
 
     unless params[:user_id] == current_user.id.to_s
-      flash[:danger] = "Unauthroized Access"
+      flash[:danger] = "Unauthorized Access"
       redirect_to user_photos_path(params[:user_id])
     end
 

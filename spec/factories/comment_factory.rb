@@ -9,6 +9,10 @@ FactoryGirl.define do
       association :commentable, :factory => :post
     end
 
+    trait :on_photo do
+      association :commentable, :factory => :photo
+    end
+
   end
 
 end
