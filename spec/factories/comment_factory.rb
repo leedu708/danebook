@@ -4,7 +4,10 @@ FactoryGirl.define do
 
     sequence(:body) { |n| "Foo comment#{n}."}
     author
-    post
+
+    trait :on_post do
+      association :commentable, :factory => :post
+    end
 
   end
 

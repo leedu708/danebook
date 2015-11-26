@@ -6,14 +6,14 @@ class PostsController < ApplicationController
 
     @user = User.find(params[:user_id])
     @posts = @user.posts
-    @new_post = Post.new(:author_id => current_user.id) if current_user
+    @new_post = current_user.posts.build if signed_in_user?
     @friends = @user.friended_users.sample(6)
 
   end
 
   def create
 
-    @new_post = Post.new(post_params)
+    @new_post = current_user.posts.build(post_params)
     if @new_post.save
       flash[:success] = "New post successfully created!"
       redirect_to [current_user, :posts]
@@ -21,6 +21,7 @@ class PostsController < ApplicationController
       flash.now[:danger] = "New post failed to save - please try again."
       @user = User.find(params[:user_id])
       @posts = @user.posts
+      @friends = @user.friended_users.sample(6)
       render :index
     end
 
@@ -42,7 +43,7 @@ class PostsController < ApplicationController
 
   def post_params
 
-    params.require(:post).permit(:author_id, :body)
+    params.require(:post).permit(:body)
 
   end
 

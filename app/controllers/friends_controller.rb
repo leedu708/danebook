@@ -11,6 +11,7 @@ class FriendsController < ApplicationController
 
   def create
 
+    # given recipient ID from view and shovels into current_user friended users
     recipient = User.find(params[:recipient_id])
     if current_user.friended_users << recipient
       flash[:success] = "You have added #{recipient.profile.full_name} as a friend!"

@@ -41,7 +41,7 @@ module LikesHelper
 
   def conjugate_like(names)
 
-    if names.size == 1 and !names.include?('You')
+    if names.size == 1 && !names.include?('You')
       'likes'
     else
       'like'

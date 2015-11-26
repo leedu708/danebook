@@ -8,6 +8,9 @@ describe "posts/index.html.erb" do
     assign(:posts, Array.new(2) { create(:post, :author => user) } )
     assign(:new_post, Post.new(:author_id => user.id) )
 
+    3.times { create(:friending, :friend_initiator => user) }
+    assign(:friends, user.friended_users)
+
     def view.signed_in_user?
       true
     end

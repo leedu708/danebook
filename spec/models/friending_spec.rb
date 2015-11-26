@@ -1,5 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe Friending, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Friending do
+
+  context 'when saving multiple Friendings' do
+
+    let(:friending) { build(:friending) }
+
+    it 'saves if the Friending does not yet exist' do
+      expect(friending).to be_valid
+    end
+
+    it 'does not save if the Friending already exists' do
+      friending.save
+      duplicate_friending = friending.dup
+      expect(duplicate_friending).to be_invalid
+    end
+
+  end
+
 end

@@ -66,6 +66,8 @@ group :development, :test do
   gem 'guard-rspec', require: false
 
   gem 'shoulda-matchers'
+
+  gem 'letter_opener'
 end
 
 gem 'binding_of_caller'

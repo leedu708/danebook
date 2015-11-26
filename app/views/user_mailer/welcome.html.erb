@@ -1,0 +1,9 @@
+<h1>Welcome to Danebook!</h1>
+
+<p>
+  Hello, <%= @user.profile.full_name %>!
+</p>
+
+<p>
+  View your profile at <%= link_to "#{user_url(@user.id)}", user_url(@user.id) %>
+</p>

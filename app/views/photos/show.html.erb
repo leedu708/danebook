@@ -2,8 +2,6 @@
 
   <%= render :partial => "shared/header", :locals => { :user => @user } %>
 
-
-
 <!-- Start of main About section -->
   <section id="photos" class="row">
 
@@ -11,7 +9,6 @@
       <div class="col-md-12">
 
         <div class="panel panel-default">
-
 
           <div class="panel-heading">
             <div class="row">
@@ -24,12 +21,8 @@
 
           </div> <!-- end of panel heading -->
 
-
-
-
           <div class="panel-body">
             <div class="row">
-
 
               <!-- LEFT SIDE -->
               <div class="col-md-8">
@@ -63,9 +56,6 @@
 
               </div>
 
-
-
-
               <!-- RIGHT SIDE -->
               <div class="col-md-4">
 
@@ -86,7 +76,6 @@
                           <% end %>
                         </div>  <!-- end of image section -->
 
-
                         <!-- Photo owner name and posted date -->
                         <div class="media-body">
                           <div class="media-heading">
@@ -105,7 +94,6 @@
                     </div>
                   </div> <!-- media object -->
 
-
                   <!-- Like links -->
                   <div class='row'>
                     <div class='col-xs-12'>
@@ -113,16 +101,12 @@
                     </div>
                   </div>
 
-
-
                   <!-- New comment -->
                   <div class="row">
                     <div class="col-xs-12">
                       <%= render :partial => 'comments/new', :locals => { :commentable => @photo } %>
                     </div>
                   </div> <!-- End of New comment -->
-
-
 
                   <div class="panel-footer">
 
@@ -143,21 +127,15 @@
 
                   </div> <!-- end of inner panel-footer -->
 
-
                 </div> <!-- end of inner panel -->
               </div>
             </div>
           </div> <!-- end of outer panel body -->
-
-
 
         </div> <!-- end of outer panel -->
 
       </div>
     </div>
   </section>
-
-
-
 
 </main> <!-- container -->

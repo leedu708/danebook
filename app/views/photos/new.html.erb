@@ -2,8 +2,6 @@
 
   <%= render :partial => "shared/header", :locals => { :user => @user } %>
 
-
-
 <!-- Start of main About section -->
   <section id="photos" class="row">
 
@@ -11,7 +9,6 @@
       <div class="col-md-12">
 
         <div class="panel panel-default">
-
 
           <div class="panel-heading">
             <div class="row">
@@ -24,33 +21,18 @@
 
           </div> <!-- end of panel heading -->
 
-
-
-
           <div class="panel-body">
             <div class="row">
-
-
 
               <div class="col-md-10 col-md-offset-1 text-center">
                 <%= form_for [@user, @photo] do |f| %>
                 <h3>
-                  Paste the URL to a photo on the web...
-                </h3>
-
-                  <p>URL input goes here</p>
-                  <%# f.text_field :url %>
-                  <p>Use Web Photo button</p>
-
-                <h2>or...</h2>
-
-                <h3>
                   Select a photo from your hard drive...
                 </h3>
 
-                  <%= f.file_field :photo %>
-
-                  <%= f.submit 'Upload!', class: 'btn btn-primary' %>
+                  <%= f.file_field :photo, class: 'center-block' %>
+                  <br>
+                  <%= f.submit 'Upload!', class: 'btn btn-success' %>
                 <% end %>
               </div>
 
@@ -58,15 +40,10 @@
 
           </div> <!-- end of panel body -->
 
-
-
         </div> <!-- end of panel -->
 
       </div>
     </div>
   </section>
-
-
-
 
 </main> <!-- container -->

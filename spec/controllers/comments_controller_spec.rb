@@ -13,14 +13,15 @@ describe CommentsController do
     end
 
     it 'does not allow the current user from changing the author_id in params' do
-
-      create(:comment)
+      request.env["HTTP_REFERER"] = user_posts_path(other_user)
+      create(:comment, :on_post)
 
       test_comment = "Test comment"
       post :create, :comment => attributes_for(:comment,
                                                :body => test_comment,
                                                :author_id => other_user.id,
-                                               :post_id => parent_post.id)
+                                               :commentable_id => parent_post.id,
+                                               :commentable_type => parent_post.class)
 
       created_comment = Comment.last
 
@@ -33,11 +34,11 @@ describe CommentsController do
 
   describe 'POST #destroy' do
 
-    let(:comment) { create(:comment) }
+    let(:comment) { create(:comment, :on_post) }
 
     it 'redirect to the Post that the deleted Comment was under' do
       delete :destroy, id: comment.id
-      expect(response).to redirect_to user_posts_path(comment.post.author)
+      expect(response).to redirect_to user_posts_path(comment.commentable.author)
     end
 
   end
