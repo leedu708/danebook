@@ -4,25 +4,33 @@ class PostsController < ApplicationController
 
   def index
 
-    @user = User.find(params[:user_id])
-    @posts = @user.posts
+    set_post_vars(params[:user_id])
     @new_post = current_user.posts.build if signed_in_user?
-    @friends = @user.friended_users.sample(6)
 
   end
 
   def create
 
     @new_post = current_user.posts.build(post_params)
+
     if @new_post.save
       flash[:success] = "New post successfully created!"
-      redirect_to [current_user, :posts]
+      
+      respond_to do |format|
+        format.html { redirect_to [current_user, :posts] }
+        format.js { render :create_success, :status => 200 }
+      end
+
     else
       flash.now[:danger] = "New post failed to save - please try again."
-      @user = User.find(params[:user_id])
-      @posts = @user.posts
-      @friends = @user.friended_users.sample(6)
-      render :index
+
+      respond_to do |format|
+        format.html do
+          set_post_vars(params[:user_id])
+          render :index
+        end
+        format.js { render :nothing => true, :status => 400 }
+      end
     end
 
   end
@@ -53,6 +61,15 @@ class PostsController < ApplicationController
       flash[:danger] = "Unauthorized Access!"
       redirect_to user_posts_path(params[:user_id])
     end
+
+  end
+
+  def set_post_vars(user_id)
+
+    @user = User.find(user_id)
+    @posts = @user.posts.order(:created_at => :desc)
+    @friends = @user.friended_users.sample(6)
+    @photos = @user.photos.sample(9)
 
   end
   

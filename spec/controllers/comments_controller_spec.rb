@@ -12,20 +12,20 @@ describe CommentsController do
       request.cookies[:auth_token] = tester.auth_token
     end
 
-    it 'does not allow the current user from changing the author_id in params' do
+    it 'does not allow the current user from changing the poster_id in params' do
       request.env["HTTP_REFERER"] = user_posts_path(other_user)
       create(:comment, :on_post)
 
       test_comment = "Test comment"
       post :create, :comment => attributes_for(:comment,
                                                :body => test_comment,
-                                               :author_id => other_user.id,
+                                               :poster_id => other_user.id,
                                                :commentable_id => parent_post.id,
                                                :commentable_type => parent_post.class)
 
       created_comment = Comment.last
 
-      expect(created_comment.author).to eq(tester)
+      expect(created_comment.poster).to eq(tester)
       expect(created_comment.body).to eq(test_comment)
 
     end
@@ -38,7 +38,7 @@ describe CommentsController do
 
     it 'redirect to the Post that the deleted Comment was under' do
       delete :destroy, id: comment.id
-      expect(response).to redirect_to user_posts_path(comment.commentable.author)
+      expect(response).to redirect_to user_posts_path(comment.commentable.poster)
     end
 
   end

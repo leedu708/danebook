@@ -7,7 +7,7 @@ feature 'Comment on a post' do
 
   before do
     sign_in(user)
-    visit user_posts_path(post.author)
+    visit user_posts_path(post.poster)
   end
 
   scenario 'with valid content length of at most 140 chars' do
@@ -17,7 +17,7 @@ feature 'Comment on a post' do
 
     expect(page).to have_content text
     expect(page).to have_content "Comment successfully created!"
-    expect(page.current_path).to eq(user_posts_path(post.author))
+    expect(page.current_path).to eq(user_posts_path(post.poster))
   end
 
   scenario 'with content that is greater than 140 chars' do
@@ -27,7 +27,7 @@ feature 'Comment on a post' do
 
     expect(page).not_to have_content text
     expect(page).to have_content "Comment failed to save - please try again."
-    expect(page.current_path).to eq(user_posts_path(post.author))
+    expect(page.current_path).to eq(user_posts_path(post.poster))
   end
 
   scenario 'with blank input' do
@@ -36,12 +36,12 @@ feature 'Comment on a post' do
     click_button 'Comment'
 
     expect(page).to have_content "Comment failed to save - please try again."
-    expect(page.current_path).to eq(user_posts_path(post.author))
+    expect(page.current_path).to eq(user_posts_path(post.poster))
   end
 
   scenario 'as unauthorized User' do
     sign_out
-    visit(user_posts_path(post.author))
+    visit(user_posts_path(post.poster))
 
     expect(page).not_to have_button('Comment')
   end

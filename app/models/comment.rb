@@ -7,8 +7,8 @@ class Comment < ActiveRecord::Base
   has_many :likers, :through => :likes,
                     :source => :user
                     
-  belongs_to :author, :class_name => 'User',
-                      :foreign_key => :author_id
+  belongs_to :poster, :class_name => 'User',
+                      :foreign_key => :poster_id
 
   validates :body, :presence => true, :length => { in: 1..140 }
                       

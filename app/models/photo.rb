@@ -7,7 +7,8 @@ class Photo < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
   validates_attachment_size :photo, :less_than => 3.megabytes
 
-  belongs_to :owner, :class_name => 'User'
+  belongs_to :poster, :class_name => 'User',
+                      :foreign_key => :poster_id
 
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :likes, :as => :liked, :dependent => :destroy

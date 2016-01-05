@@ -41,7 +41,7 @@ User.all.each do |u|
   (MULTIPLIER * rand(3..10)).times do
     p = Post.all.sample
     c = p.comments.build
-    c.author_id = u.id
+    c.poster_id = u.id
     c.body = Faker::Lorem.paragraph(1,true,1)
     p.save!
   end

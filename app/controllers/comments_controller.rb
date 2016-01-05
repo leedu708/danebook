@@ -6,13 +6,23 @@ class CommentsController < ApplicationController
   def create
 
     @new_comment = current_user.comments.build(comment_params)
+
     if @new_comment.save
       flash[:success] = "Comment successfully created!"
+
+      respond_to do |format|
+        format.html { redirect_back_or_to(user_posts_path(@new_comment.commentable.poster)) }
+        format.js { render :create_success, :status => 200 }
+      end
+
     else
       flash[:danger] = "Comment failed to save - please try again."
-    end
 
-    redirect_to :back
+      respond_to do |format|
+        format.html { redirect_back_or_to(user_posts_path(@new_comment.commentable.poster)) }
+        format.js { render :nothing => true, :status => 400 }
+      end
+    end
 
   end
 
@@ -40,9 +50,9 @@ class CommentsController < ApplicationController
   def require_current_user
 
     comment = Comment.find(params[:id])
-    unless comment.author == current_user
-      flash[:danger] = "Unauthorized Access."
-      redirect_to user_posts_path(comment.commentable.author)
+    unless comment.poster == current_user
+      flash[:danger] = "Unposterized Access."
+      redirect_to user_posts_path(comment.commentable.poster)
     end
 
   end

@@ -34,14 +34,14 @@ class PhotosController < ApplicationController
   def show
 
     @photo = Photo.find(params[:id])
-    @user = @photo.owner
+    @user = @photo.poster
 
   end
 
   def destroy
 
     @photo = Photo.find(params[:id])
-    @user = @photo.owner
+    @user = @photo.poster
 
     if @photo.destroy
       flash[:success] = "Photo successfully deleted!"
@@ -72,9 +72,9 @@ class PhotosController < ApplicationController
 
     def require_friendship
 
-      owner = User.find(params[:user_id])
+      poster = User.find(params[:user_id])
 
-      unless owner == current_user || owner.friended_users.include?(current_user)
+      unless poster == current_user || poster.friended_users.include?(current_user)
         flash[:danger] = "Unauthorized Access!"
         redirect_to user_photos_path(params[:user_id])
       end

@@ -96,7 +96,9 @@
 <!-- MAKE POST -->
         <%= render :partial => 'posts/new', :locals => { :new_post => @user.posts.build } %>
 
-        <%= render @posts %>
+        <div data-content='posts'>
+          <%= render @posts %>
+        </div>
 
       </div>
 <!-- end of RIGHT side -->

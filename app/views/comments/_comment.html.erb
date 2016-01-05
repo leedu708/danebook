@@ -4,8 +4,8 @@
 
     <div class="media-left">
 
-      <%= link_to user_path(comment.author) do %>
-        <%= image_tag 'user_silhouette_generic.gif', id: 'user-photo', class: 'media-object', size: '50x50', alt: "Commenter's photo" %>
+      <%= link_to user_path(comment.poster) do %>
+        <%= image_tag user_image(comment.poster), id: 'user-photo', class: 'media-object', size: '50x50', alt: "Commenter's photo" %>
       <% end %>
 
     </div>
@@ -14,7 +14,7 @@
 
       <div class="media-heading">
 
-        <%= link_to comment.author.profile.full_name, user_path(comment.author) %>
+        <%= link_to comment.poster.profile.full_name, user_path(comment.poster) %>
 
         <time datetime=<%= comment.created_at %> pubdate>
           <small>Said on <%= comment.created_at %></small>
@@ -35,7 +35,7 @@
         <%= render :partial => 'likes/likes_display', :locals => { :liked_object => comment } if comment.likers %>
 
         <div class="pull-right">
-          <%= link_to 'Delete', comment_path(comment), method: 'delete', alt: 'Delete this post' if comment.author == current_user %>
+          <%= link_to 'Delete', comment_path(comment), method: 'delete', alt: 'Delete this post' if comment.poster == current_user %>
         </div>
 
       </div>
