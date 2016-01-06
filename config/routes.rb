@@ -20,10 +20,6 @@ Rails.application.routes.draw do
   resources :comments, :only => [:create, :destroy]
   resources :likes, :only => [:create, :destroy]
 
-  get "/about" => "users#show"
-  get "/about_edit" => "users#edit"
-  get "/timeline" => "posts#index"
-  get "/photos" => "static_pages#photos"
-  get "/friends" => "static_pages#friends"
+  get 'search' => 'profiles#index'
 
 end

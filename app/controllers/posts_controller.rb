@@ -37,13 +37,23 @@ class PostsController < ApplicationController
 
   def destroy
 
-    if Post.find(params[:id]).destroy!
+    @id = params[:id]
+
+    if Post.find(@id).destroy!
       flash[:success] = "Post successfully deleted!"
+
+      respond_to do |format|
+        format.html { redirect_to user_posts_path(current_user) }
+        format.js { render :destroy_success, :status => 200 }
+      end
     else
       flash[:danger] = "Post failed to be deleted - please try again."
-    end
 
-    redirect_to user_posts_path(current_user)
+      respond_to do |format|
+        format.html { redirect_to user_posts_path(current_user) }
+        format.js { render :nothing => true, :status => 400 }
+      end
+    end
 
   end
 

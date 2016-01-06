@@ -34,16 +34,13 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'twitter-bootstrap-rails'
-
 gem 'pg'
-
 gem 'faker'
-
 gem 'paperclip'
-
 gem 'aws-sdk', '< 2.0'
-
 gem 'figaro'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

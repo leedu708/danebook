@@ -1,0 +1,7 @@
+$('.alert').remove();
+
+$post = $("[data-type='Post'][data-id='" + <%= @id %> + "']");
+$post.remove();
+
+$("<%= j(bootstrap_flash) %>").insertBefore('main');
+<% flash.clear %>

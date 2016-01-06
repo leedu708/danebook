@@ -21,5 +21,13 @@ class Profile < ActiveRecord::Base
     self.first_name + " " + self.last_name
 
   end
+
+  def self.search(query)
+    if query
+      where('lower(first_name) LIKE ? OR lower(last_name) LIKE ?', "%#{query.downcase}%", "%#{query.downcase}%")
+    else
+      where("")
+    end
+  end
   
 end

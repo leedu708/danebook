@@ -15,7 +15,7 @@
             <%= render :partial => 'likes/like_links', :locals => { :liked_object => post } %>
 
             <div class="pull-right">
-              <%= link_to 'Delete', user_post_path(post.poster, post), method: 'delete', alt: 'Delete this post' if post.poster == current_user %>
+              <%= link_to 'Delete', user_post_path(post.poster, post), method: 'delete', remote: true, alt: 'Delete this post' if post.poster == current_user %>
             </div>
 
           </div>

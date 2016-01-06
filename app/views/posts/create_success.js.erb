@@ -1,0 +1,12 @@
+$('.alert').remove();
+
+var newPost = "<%= j(render :partial => 'post', :locals => { :post => @new_post }) %>";
+
+var $posts = $("div[data-content='posts']");
+
+$(newPost).prependTo($posts).hide().slideDown(750);
+$(newPost).find('.comment-form').hide();
+$('#post_body').val('');
+
+$("<%= j(bootstrap_flash) %>").insertBefore('main');
+<% flash.clear %>

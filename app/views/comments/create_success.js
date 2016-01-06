@@ -1,9 +1,0 @@
-var newComment = "<%= j(render :partial => 'comment', :locals => { :comment => @new_comment }) %>";
-
-var parent_type = "<%= @new_comment.commentable_type %>";
-var parent_id = "<%= @new_comment.commentable_id %>";
-var $parent = $("div[data-type='" + parent_type + "'][data-id='" + parent_id + "']");
-
-$(newComment).appendTo($parent.find('#comments-wrapper')).hide().slideDown(750);
-
-$('textarea[name="comment[body]"]').val('');

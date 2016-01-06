@@ -298,3 +298,23 @@
     border: 1px solid #999;
   }
 }
+
+.toggle-comment {
+  line_height: 50px;
+  cursor: pointer;
+}
+
+// search bar
+
+#search-results {
+  .result-panel {
+    img {
+      max-width: 120px;
+      max-height: 120px;
+    }
+  }
+}
+
+.buffer-top {
+  margin-top: 30px;
+}
